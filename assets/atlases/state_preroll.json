@@ -1,0 +1,30 @@
+{"frames": [
+
+{
+	"filename": "progressbar_1.png",
+	"frame": {"x":0,"y":0,"w":522,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":522,"h":76},
+	"sourceSize": {"w":522,"h":76},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "progressbar_2.png",
+	"frame": {"x":522,"y":0,"w":522,"h":76},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":522,"h":76},
+	"sourceSize": {"w":522,"h":76},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "state_preroll.png",
+	"format": "RGBA8888",
+	"size": {"w":1044,"h":76},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ef6ae4e4bb2783c060296478068bd903:f8c76ece48101de7ec2d486cc7617419:a70a5d2e07e64442c70b828860b0245c$"
+}
+}
