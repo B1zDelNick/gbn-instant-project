@@ -1,0 +1,57 @@
+{"frames": [
+
+{
+	"filename": "body.png",
+	"frame": {"x":0,"y":287,"w":506,"h":587},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":506,"h":587},
+	"sourceSize": {"w":506,"h":587},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_0.png",
+	"frame": {"x":294,"y":0,"w":178,"h":287},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":287},
+	"sourceSize": {"w":178,"h":287},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "head.png",
+	"frame": {"x":0,"y":0,"w":147,"h":175},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":175},
+	"sourceSize": {"w":147,"h":175},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sad.png",
+	"frame": {"x":147,"y":0,"w":147,"h":175},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":175},
+	"sourceSize": {"w":147,"h":175},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "spot.png",
+	"frame": {"x":472,"y":0,"w":181,"h":255},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":181,"h":255},
+	"sourceSize": {"w":181,"h":255},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_sophia_rivals.png",
+	"format": "RGBA8888",
+	"size": {"w":653,"h":874},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:03367179935ae79031e0e0921f491719:8336f8fffdffc74c46dd935a58d40819:7cbd7b951317332b5efd73485cf1b3d5$"
+}
+}

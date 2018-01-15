@@ -29,6 +29,10 @@ export class DecorBackground {
     getIndex(layerName: string): number {
         return this.layers[layerName].getCurrent();
     }
+    
+    getByIndex(layerName: string, index: number): Phaser.Sprite {
+    	return this.layers[layerName].getByIndex(index);
+    }
 
     extract(): DecorBackground {
         this.game.world.remove(this.container);

@@ -29,7 +29,7 @@
 },
 {
 	"filename": "d_arrow_btn.png",
-	"frame": {"x":0,"y":0,"w":75,"h":63},
+	"frame": {"x":2,"y":0,"w":75,"h":63},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":75,"h":63},
@@ -43,6 +43,15 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":113},
 	"sourceSize": {"w":116,"h":113},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "dummy.png",
+	"frame": {"x":0,"y":0,"w":2,"h":2},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":2,"h":2},
+	"sourceSize": {"w":2,"h":2},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
@@ -83,7 +92,7 @@
 },
 {
 	"filename": "mus_off_btn.png",
-	"frame": {"x":75,"y":0,"w":81,"h":77},
+	"frame": {"x":158,"y":0,"w":81,"h":77},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":77},
@@ -92,7 +101,7 @@
 },
 {
 	"filename": "mus_on_btn.png",
-	"frame": {"x":162,"y":77,"w":81,"h":77},
+	"frame": {"x":77,"y":0,"w":81,"h":77},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":77},
@@ -101,7 +110,7 @@
 },
 {
 	"filename": "photo_btn.png",
-	"frame": {"x":81,"y":77,"w":81,"h":78},
+	"frame": {"x":162,"y":77,"w":81,"h":78},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":78},
@@ -128,7 +137,7 @@
 },
 {
 	"filename": "snd_off_btn.png",
-	"frame": {"x":0,"y":77,"w":81,"h":77},
+	"frame": {"x":81,"y":77,"w":81,"h":77},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":77},
@@ -137,7 +146,7 @@
 },
 {
 	"filename": "snd_on_btn.png",
-	"frame": {"x":156,"y":0,"w":81,"h":77},
+	"frame": {"x":0,"y":77,"w":81,"h":77},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":81,"h":77},
@@ -160,6 +169,6 @@
 	"format": "RGBA8888",
 	"size": {"w":243,"h":1241},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9bdc1991c10990ba665dfd3d259c729e:625b9bf1e295f7f48fda6256a82985c5:788b34ed4e778d63c84b2c3df4d44949$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ec4bc5bb409b5ba617a898af83c13ec8:d5ebfb68f96a17a4a0b2068e5ddbf849:788b34ed4e778d63c84b2c3df4d44949$"
 }
 }

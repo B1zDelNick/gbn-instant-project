@@ -24,6 +24,17 @@ export class DecorLayer {
         this.sprites.push(this.game.add.sprite(x, y, asset, frame, this.container));
         return this;
     }
+	
+	activeItem(x: number, y: number, asset: string, frame?: any): DecorLayer {
+		const temp = this.game.add.sprite(x, y, asset, frame, this.container)
+    	this.sprites.push(temp);
+		temp.inputEnabled = true;
+		temp.input.pixelPerfectClick = temp.input.pixelPerfectOver = true;
+		temp.input.pixelPerfectAlpha = 10;
+		temp.input.useHandCursor = true;
+		temp.events.onInputUp.add(this.next, this);
+		return this;
+	}
 
     next(): void {
         if (!isUndefined(this.sprites[this.current])) { // (this.current !== this.sprites.length - this.emptySlotModifier) {
@@ -41,6 +52,10 @@ export class DecorLayer {
 
     getCurrent(): number {
         return this.current;
+    }
+    
+    getByIndex(index: number): Phaser.Sprite {
+    	return this.sprites[index];
     }
 
     build(): DecorBackground {

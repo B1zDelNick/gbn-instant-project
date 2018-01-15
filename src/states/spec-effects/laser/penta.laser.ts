@@ -72,6 +72,9 @@ export class PentaLaser implements ILaser {
         this.game.add.tween(this.laser5).to({ angle: 0 }, Phaser.Timer.SECOND * 1, Phaser.Easing.Linear.None, true, 200, 99999)
             .yoyo(true);
     }
+	
+	stop(): void {
+	}
 
     dispose(): void {
         this.game.tweens.removeFrom(this.laser1);

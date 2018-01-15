@@ -25,10 +25,19 @@ export class TweenUtils {
     public static rotate(
         target: any, amount: number, duration: number = 1000, delay: number = 0, repeat: number = 0, loop: boolean = false,
         easing: Function = Phaser.Easing.Linear.None, callBack?: Function, context?: any): Phaser.Tween {
-
         if (repeat === -1) repeat = 99999;
         const game = GameConfig.GAME;
-        return game.add.tween(target).to({ angle: amount }, duration, easing, true, delay, repeat, loop);
+	    this.kill(target);
+	    if (target.inputEnabled) {
+		    target.inputEnabled = false;
+		    TweenUtils.delayedCall(duration + delay + 5, () => {
+			    target.inputEnabled = true;
+		    }, this);
+	    }
+        const tween = game.add.tween(target).to({ angle: amount }, duration, easing, true, delay, repeat, loop);
+	    if (!isNull(callBack) && !isUndefined(callBack))
+		    tween.onComplete.addOnce(callBack, context);
+	    return tween;
     }
 
     public static fadeOut(target: any, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
@@ -63,6 +72,23 @@ export class TweenUtils {
         return tween;
     }
 
+    public static fadeAndScaleAndRotate(target: any, alpha: number = 1, scale: number = 1, rotate: number = 360, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
+        const game = GameConfig.GAME;
+        this.kill(target);
+        this.kill(target.scale);
+        if (target.inputEnabled) {
+            target.inputEnabled = false;
+            TweenUtils.delayedCall(duration + delay + 5, () => {
+                target.inputEnabled = true;
+            }, this);
+        }
+        const tween = game.add.tween(target.scale).to({ x: scale, y: scale }, duration, Phaser.Easing.Linear.None, true, delay);
+        const tween2 = game.add.tween(target).to({ alpha: alpha, angle: rotate }, duration, Phaser.Easing.Linear.None, true, delay);
+        if (!isNull(callBack) && !isUndefined(callBack))
+            tween.onComplete.addOnce(callBack, context);
+        return tween;
+    }
+
     public static fade(target: any, alpha: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
         const game = GameConfig.GAME;
         this.kill(target);
@@ -81,23 +107,52 @@ export class TweenUtils {
 
     public static scale(target: any, scale: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
         const game = GameConfig.GAME;
-        this.kill(target);
+        this.kill(target.scale);
         if (target.inputEnabled) {
             target.inputEnabled = false;
             TweenUtils.delayedCall(duration + delay + 5, () => {
                 target.inputEnabled = true;
             }, this);
         }
-
         const tween = game.add.tween(target.scale).to({ x: scale, y: scale }, duration, Phaser.Easing.Linear.None, true, delay);
         if (!isNull(callBack) && !isUndefined(callBack))
             tween.onComplete.addOnce(callBack, context);
         return tween;
     }
+	
+	public static flipX(target: any, scale: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
+		const game = GameConfig.GAME;
+		this.kill(target.scale);
+		if (target.inputEnabled) {
+			target.inputEnabled = false;
+			TweenUtils.delayedCall(duration + delay + 5, () => {
+				target.inputEnabled = true;
+			}, this);
+		}
+		const tween = game.add.tween(target.scale).to({ x: scale }, duration, Phaser.Easing.Linear.None, true, delay);
+		if (!isNull(callBack) && !isUndefined(callBack))
+			tween.onComplete.addOnce(callBack, context);
+		return tween;
+	}
+	
+	public static flipY(target: any, scale: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
+		const game = GameConfig.GAME;
+		this.kill(target.scale);
+		if (target.inputEnabled) {
+			target.inputEnabled = false;
+			TweenUtils.delayedCall(duration + delay + 5, () => {
+				target.inputEnabled = true;
+			}, this);
+		}
+		const tween = game.add.tween(target.scale).to({ y: scale }, duration, Phaser.Easing.Linear.None, true, delay);
+		if (!isNull(callBack) && !isUndefined(callBack))
+			tween.onComplete.addOnce(callBack, context);
+		return tween;
+	}
 
     public static scaleIn(target: any, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
         const game = GameConfig.GAME;
-        this.kill(target);
+        this.kill(target.scale);
         if (target.inputEnabled) {
             target.inputEnabled = false;
             TweenUtils.delayedCall(duration + delay + 5, () => {
@@ -110,6 +165,22 @@ export class TweenUtils {
             tween.onComplete.addOnce(callBack, context);
         return tween;
     }
+	
+	public static scaleAndMoveAndBounceIn(target: any, x: number, y: number, scale: number = 1, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
+		const game = GameConfig.GAME;
+		this.kill(target.scale);
+		if (target.inputEnabled) {
+			target.inputEnabled = false;
+			TweenUtils.delayedCall(duration + delay + 5, () => {
+				target.inputEnabled = true;
+			}, this);
+		}
+		const tween2 = game.add.tween(target).to({ x: x, y: y }, duration, Phaser.Easing.Bounce.Out, true, delay);
+		const tween = game.add.tween(target.scale).to({ x: scale, y: scale }, duration, Phaser.Easing.Bounce.Out, true, delay);
+		if (!isNull(callBack) && !isUndefined(callBack))
+			tween.onComplete.addOnce(callBack, context);
+		return tween;
+	}
 
     public static moveOut(target: any, x: number, y: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween {
         const game = GameConfig.GAME;
@@ -120,7 +191,6 @@ export class TweenUtils {
                 target.inputEnabled = true;
             }, this);
         }
-
         const tween = game.add.tween(target).to({ x: x, y: y }, duration, Phaser.Easing.Circular.In, true, delay);
         if (!isNull(callBack) && !isUndefined(callBack))
             tween.onComplete.addOnce(callBack, context);
@@ -328,8 +398,8 @@ export class TweenUtils {
             }, this);
         }
 
-        const tw1 = game.add.tween(target).to({ alpha: 0 }, duration, Phaser.Easing.Linear.None, true, delay);
-        const tw2 = game.add.tween(target.scale).to({ x: 0, y: 0 }, duration, Phaser.Easing.Linear.None, true, delay);
+        const tw1 = game.add.tween(target).to({ alpha: 0 }, duration, Phaser.Easing.Circular.In, true, delay);
+        const tw2 = game.add.tween(target.scale).to({ x: 0, y: 0 }, duration, Phaser.Easing.Circular.In, true, delay);
         if (!isNull(callBack) && !isUndefined(callBack))
             tw2.onComplete.addOnce(callBack, context);
         return [

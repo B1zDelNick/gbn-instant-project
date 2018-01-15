@@ -1,0 +1,93 @@
+{"frames": [
+
+{
+	"filename": "body.png",
+	"frame": {"x":0,"y":0,"w":452,"h":732},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":452,"h":732},
+	"sourceSize": {"w":452,"h":732},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_1.png",
+	"frame": {"x":0,"y":732,"w":121,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":121,"h":99},
+	"sourceSize": {"w":121,"h":99},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_2.png",
+	"frame": {"x":121,"y":732,"w":121,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":121,"h":99},
+	"sourceSize": {"w":121,"h":99},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_3.png",
+	"frame": {"x":242,"y":732,"w":121,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":121,"h":99},
+	"sourceSize": {"w":121,"h":99},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_0.png",
+	"frame": {"x":0,"y":831,"w":257,"h":228},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":257,"h":228},
+	"sourceSize": {"w":257,"h":228},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_b_0.png",
+	"frame": {"x":0,"y":1059,"w":302,"h":303},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":302,"h":303},
+	"sourceSize": {"w":302,"h":303},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "head.png",
+	"frame": {"x":302,"y":1059,"w":143,"h":173},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":143,"h":173},
+	"sourceSize": {"w":143,"h":173},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_1.png",
+	"frame": {"x":0,"y":1362,"w":121,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":121,"h":99},
+	"sourceSize": {"w":121,"h":99},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_2.png",
+	"frame": {"x":121,"y":1362,"w":121,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":121,"h":99},
+	"sourceSize": {"w":121,"h":99},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_imam.png",
+	"format": "RGBA8888",
+	"size": {"w":452,"h":1461},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3ea5a32dcb7cad773e6947314d303375:113b9740fef43f43492f7c1c54f3c320:91b99391d80868eac1db717cd2455e45$"
+}
+}

@@ -1,7 +1,6 @@
 import * as Utils from '../utils/utils';
-import {GameConfig, Sites} from '../config/game.config';
+import {GadgetMode, GameConfig, LOCALE} from '../config/game.config';
 import {BootUtils} from '../utils/boot.utils';
-import {AdUtils} from '../utils/ad/ad.utils';
 
 export default class Boot extends Phaser.State {
 
@@ -18,6 +17,18 @@ export default class Boot extends Phaser.State {
             // Set image assets to be loaded in minified version
             GameConfig.ASSET_SIZE = ''; // 'Min';
         }
+	    let language;
+	    if (window.navigator.languages) {
+		    language = window.navigator.languages[0];
+	    } else {
+		    language = window.navigator.language;
+	    }
+	    if (language.toLowerCase().indexOf('ru') !== -1) {
+		    GameConfig.LOCALE = LOCALE.RUS;
+	    }
+	    else {
+		    GameConfig.LOCALE = LOCALE.ENG;
+	    }
 
         BootUtils.preload();
     }
@@ -37,7 +48,6 @@ export default class Boot extends Phaser.State {
 
         if (SCALE_MODE === 'USER_SCALE') {
             let screenMetrics: Utils.ScreenMetrics = Utils.ScreenUtils.screenMetrics;
-
             this.game.scale.setUserScale(screenMetrics.scaleX, screenMetrics.scaleY);
         }
 
@@ -46,14 +56,15 @@ export default class Boot extends Phaser.State {
 
         if (this.game.device.desktop) {
             // Any desktop specific stuff here
+            GameConfig.GADGET = GadgetMode.DESKTOP;
         } else {
             // Any mobile specific stuff here
-
+	        GameConfig.GADGET = GadgetMode.MOBILE;
             // Comment the following and uncomment the line after that to force portrait mode instead of landscape
             // this.game.scale.forceOrientation(true, false);
-            this.game.scale.forceOrientation(false, true);
+            // this.game.scale.forceOrientation(false, true);
         }
-
+	
         // Use DEBUG to wrap code that should only be included in a DEBUG build of the game
         // DEFAULT_GAME_WIDTH is the safe area width of the game
         // DEFAULT_GAME_HEIGHT is the safe area height of the game

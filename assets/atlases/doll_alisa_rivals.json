@@ -1,0 +1,66 @@
+{"frames": [
+
+{
+	"filename": "body.png",
+	"frame": {"x":0,"y":739,"w":409,"h":798},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":409,"h":798},
+	"sourceSize": {"w":409,"h":798},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_0.png",
+	"frame": {"x":0,"y":289,"w":201,"h":368},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":201,"h":368},
+	"sourceSize": {"w":201,"h":368},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_b_0.png",
+	"frame": {"x":282,"y":0,"w":173,"h":289},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":173,"h":289},
+	"sourceSize": {"w":173,"h":289},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "hand.png",
+	"frame": {"x":201,"y":289,"w":238,"h":450},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":238,"h":450},
+	"sourceSize": {"w":238,"h":450},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "head.png",
+	"frame": {"x":0,"y":0,"w":141,"h":165},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":141,"h":165},
+	"sourceSize": {"w":141,"h":165},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "smile.png",
+	"frame": {"x":141,"y":0,"w":141,"h":165},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":141,"h":165},
+	"sourceSize": {"w":141,"h":165},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_alisa_rivals.png",
+	"format": "RGBA8888",
+	"size": {"w":455,"h":1537},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:02c60b38f0752bb6723f76335d6f81c2:e47f5dab5155416699654415558f1186:a0b579b76d63d555fe3c73120fecc720$"
+}
+}

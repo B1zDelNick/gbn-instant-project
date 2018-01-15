@@ -1,0 +1,93 @@
+{"frames": [
+
+{
+	"filename": "body.png",
+	"frame": {"x":0,"y":569,"w":378,"h":426},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":378,"h":426},
+	"sourceSize": {"w":378,"h":426},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_1.png",
+	"frame": {"x":0,"y":108,"w":134,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":108},
+	"sourceSize": {"w":134,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_2.png",
+	"frame": {"x":134,"y":0,"w":134,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":108},
+	"sourceSize": {"w":134,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_3.png",
+	"frame": {"x":268,"y":0,"w":134,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":108},
+	"sourceSize": {"w":134,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h_0.png",
+	"frame": {"x":147,"y":283,"w":178,"h":286},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":286},
+	"sourceSize": {"w":178,"h":286},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "head.png",
+	"frame": {"x":268,"y":108,"w":147,"h":175},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":175},
+	"sourceSize": {"w":147,"h":175},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sad.png",
+	"frame": {"x":0,"y":283,"w":147,"h":175},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":175},
+	"sourceSize": {"w":147,"h":175},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_1.png",
+	"frame": {"x":0,"y":0,"w":134,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":108},
+	"sourceSize": {"w":134,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_2.png",
+	"frame": {"x":134,"y":108,"w":134,"h":108},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":134,"h":108},
+	"sourceSize": {"w":134,"h":108},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_sophia_comix_rivals.png",
+	"format": "RGBA8888",
+	"size": {"w":415,"h":995},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:1f351343426a7f0baeb5894a562b4f57:c24a340fc3f6b6e6850b8626889fc2d7:e3e26628ecc9916bb1e0344b9f44fe81$"
+}
+}

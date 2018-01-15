@@ -24,10 +24,10 @@ export class AnimatedChestItem extends ChestItemBase {
         this.name = name;
 
         let visible = true;
-        if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
+        /*if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
             if (GameConfig.PUB_MODE !== PublishMode.NORMAL)
                 visible = false;
-        }
+        }*/
 
         this.button =
             GuiUtils.makeSpritesheetButton(

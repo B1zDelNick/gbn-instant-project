@@ -1,9 +1,10 @@
-import * as Assets from '../../assets';
 import {IPreloader} from './i.preloader';
-import {GameConfig, PublishMode} from '../../config/game.config';
-import {GuiUtils} from '../../utils/gui.utils';
+import {GameConfig} from '../../config/game.config';
 import {SoundUtils} from '../../utils/sound/sound.utils';
 import {ImageUtils} from '../../utils/images/image.utils';
+import {GuiUtils} from '../../utils/gui.utils';
+import {TweenUtils} from '../../utils/tween.utils';
+import {EffectUtils} from '../../utils/effect.utils';
 
 export class InstanrPreloader implements IPreloader {
 
@@ -11,6 +12,7 @@ export class InstanrPreloader implements IPreloader {
     state: Phaser.State;
 
     private bg: Phaser.Sprite = null;
+    private title: Phaser.Sprite = null;
     private preloadBarSprite: Phaser.Sprite = null;
     private preloadFrameSprite: Phaser.Sprite = null;
 
@@ -26,15 +28,21 @@ export class InstanrPreloader implements IPreloader {
 
         /** BG */
         this.bg = this.game.add.sprite(0, 0, ImageUtils.getImageClass('ImagesPrerollBg').getName());
-
+	
+	    this.title = this.game.add.sprite(0, 270, ImageUtils.getImageClass('ImagesTitle' + GameConfig.LOCALE).getName());
+	    GuiUtils.centrize(this.title);
+	    // this.title.scale.setTo(.9);
+	    EffectUtils.makeLightRotateAnimation(this.title, 550, 4);
+	    EffectUtils.makeScaleAnimation(this.title, 1.02, 1100);
+        
         /**
          * Preloader Progress Bar
          */
 
-        this.preloadFrameSprite = this.game.add.sprite(0, 580,
+        this.preloadFrameSprite = this.game.add.sprite(0, 780,
             ImageUtils.getAtlasClass('AtlasesStatePreroll').getName(),
             ImageUtils.getAtlasClass('AtlasesStatePreroll').Frames.Progressbar1);
-        this.preloadBarSprite = this.game.add.sprite(0, 580,
+        this.preloadBarSprite = this.game.add.sprite(0, 780,
             ImageUtils.getAtlasClass('AtlasesStatePreroll').getName(),
             ImageUtils.getAtlasClass('AtlasesStatePreroll').Frames.Progressbar2);
         this.preloadBarSprite.x = this.preloadFrameSprite.x = this.game.world.centerX - this.preloadFrameSprite.width / 2;

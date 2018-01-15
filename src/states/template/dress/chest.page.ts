@@ -1,4 +1,4 @@
-import {GameConfig, PublishMode} from '../../../config/game.config';
+import {GadgetMode, GameConfig, PublishMode} from '../../../config/game.config';
 import {ChestItem} from './chest.item';
 import {Chest} from './chest';
 import {GuiUtils} from '../../../utils/gui.utils';
@@ -15,7 +15,7 @@ export class ChestPage {
     private state: Phaser.State = null;
     public hideStatic: boolean;
     private container: Phaser.Group = null;
-    private shelf: Phaser.Sprite = null;
+    private shelf: Phaser.Sprite[] = [];
     private items: Array<ChestItemBase> = [];
     private compoundItems: Array<ChestCompoundItem> = [];
 
@@ -41,6 +41,10 @@ export class ChestPage {
         }
         return null;
     }
+	
+	findShelf(name: string): Phaser.Sprite {
+		return this.shelf[name];
+	}
 
     tryToSetVisibility(name: string): boolean {
         for (let item of this.items) {
@@ -88,24 +92,38 @@ export class ChestPage {
             item.enable();
         }
     }
-
-    hide(): void {
-        this.container.visible = false;
-    }
-
-    show(): void {
+	
+	show(smooth: boolean = false): void {
         this.container.visible = true;
+        if (smooth) {
+        	this.container.alpha = 0;
+        	TweenUtils.fadeIn(this.container, 500);
+        }
+    }
+	
+	hide(smooth: boolean = false): void {
+    	/*if (smooth) {
+    		TweenUtils.fadeOut(this.container, 500, 0, () => {
+			    this.container.visible = false;
+		    }, this);
+	    }
+        else {
+		    this.container.visible = false;
+	    }*/
+		this.container.visible = false;
     }
 
-    pageShelf(x: number, y: number, asset: string, frame?: any): ChestPage {
-        this.shelf = this.game.add.sprite(x, y, asset, frame, this.container);
+    pageShelf(x: number, y: number, name: string, asset: string, frame?: any): ChestPage {
+        const temp = this.game.add.sprite(x, y, asset, frame, this.container);
+        temp.name = name;
+    	this.shelf[name] = temp;
         return this.instance;
     }
 
     item(x: number, y: number, name: string, asset: string, frames?: any|any[],
                 callback?: Function,
-                overHandler: Function = GuiUtils.addOverGlowHandler,
-                outHandler: Function = GuiUtils.addOutGlowHandler): ChestPage {
+                overHandler: Function = GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverGlowHandler : null,
+                outHandler: Function = GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutGlowHandler : null): ChestPage {
 
         this.items.push(new ChestItem(this.state, this.container, x, y, name, asset, frames, callback, overHandler, outHandler));
         return this.instance;
@@ -125,8 +143,8 @@ export class ChestPage {
     compoundItem(length: number, showFrom: number, emptyState: number,
                  x: number, y: number, name: string, asset: string, frameClass: any, prefix: string,
                  callback?: Function,
-                 overHandler: Function = GuiUtils.addOverGlowHandler,
-                 outHandler: Function = GuiUtils.addOutGlowHandler): ChestPage {
+                 overHandler: Function = GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverGlowHandler : null,
+                 outHandler: Function = GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutGlowHandler : null): ChestPage {
 
         this.compoundItems.push(
             new ChestCompoundItem(this.state, this.container,
@@ -147,7 +165,9 @@ export class ChestPage {
         for (let item of this.compoundItems) {
             item.dispose();
         }
-        if (!isNull(this.shelf)) this.shelf.destroy(true);
+	    for (let item of this.shelf) {
+		    item.destroy(true);
+	    }
         this.container.destroy(true);
     }
 }

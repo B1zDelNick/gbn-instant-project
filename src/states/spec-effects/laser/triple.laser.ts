@@ -47,6 +47,9 @@ export class TripleLaser implements ILaser {
         this.game.add.tween(this.laser3).to({ angle: -7 }, Phaser.Timer.SECOND * 1.25, Phaser.Easing.Linear.None, true, 400, 99999)
             .yoyo(true);
     }
+	
+	stop(): void {
+	}
 
     dispose(): void {
         this.game.tweens.removeFrom(this.laser1);

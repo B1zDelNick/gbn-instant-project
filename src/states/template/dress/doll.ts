@@ -9,6 +9,15 @@ export class Doll {
     private game: Phaser.Game = null;
     private container: Phaser.Group = null;
     private layers: Array<DollLayer> = [];
+    private eyes: DollLayer = null;
+    private lips: DollLayer = null;
+    private flash: DollLayer = null;
+    private eyesIndex: number = 0;
+    private eyesAnimate: boolean = false;
+    private lipsIndex: number = 0;
+	private lipsAnimate: boolean = false;
+	private flashIndex: number = 0;
+	private flashAnimate: boolean = false;
     private dependencies: Map<string, string> = new Map();
 
     constructor(state: Phaser.State, x: number, y: number, scaleX: number = 1, scaleY: number = -1) {
@@ -37,6 +46,77 @@ export class Doll {
         }
         return this;
     }
+	
+	eyesL(x: number, y: number, name: string, assetClass: string, prefix?: string, defaultFrame?: string, removable: boolean = false, strictIndexes?: number[], dependsOn?: string[]): Doll {
+		this.eyes = new DollLayer(this.container, x, y, assetClass, prefix, defaultFrame, removable, strictIndexes);
+		this.eyesAnimate = true;
+		this.animateEyes();
+		return this;
+	}
+
+    flashL(x: number, y: number, name: string, assetClass: string, prefix?: string, defaultFrame?: string, removable: boolean = false, strictIndexes?: number[], dependsOn?: string[]): Doll {
+        this.flash = new DollLayer(this.container, x, y, assetClass, prefix, defaultFrame, removable, strictIndexes);
+        this.flashAnimate = true;
+        this.animateFlash();
+        return this;
+    }
+	
+	lipsL(x: number, y: number, name: string, assetClass: string, prefix?: string, defaultFrame?: string, removable: boolean = false, strictIndexes?: number[], dependsOn?: string[]): Doll {
+		this.lips = new DollLayer(this.container, x, y, assetClass, prefix, defaultFrame, removable, strictIndexes);
+		this.lipsAnimate = true;
+		this.animateLips();
+		return this;
+	}
+	
+	animateFlash() {
+		if (this.flash === null || !this.flashAnimate) return;
+		this.flashIndex++;
+		if (this.flashIndex > 3) this.flashIndex = 1;
+		this.flash.operate(this.flashIndex);
+		TweenUtils.delayedCall(150, this.animateFlash, this);
+	}
+	
+	stopFlash() {
+		this.flashAnimate = false;
+		this.flash.operate(1);
+		this.flash.getBody().visible = false;
+	}
+	
+	animateEyes() {
+    	if (this.eyes === null || !this.eyesAnimate) return;
+    	this.eyesIndex++;
+    	if (this.eyesIndex > 3) this.eyesIndex = 1;
+    	this.eyes.operate(this.eyesIndex);
+    	if (this.eyesIndex === 1) {
+    		TweenUtils.delayedCall(this.game.rnd.between(4000, 6000), this.animateEyes, this);
+	    }
+	    else {
+		    TweenUtils.delayedCall(200, this.animateEyes, this);
+	    }
+	}
+	
+	stopEyes() {
+		this.eyesAnimate = false;
+		this.eyes.operate(1);
+	}
+	
+	animateLips() {
+		if (this.lips === null || !this.lipsAnimate) return;
+    	this.lipsIndex++;
+		if (this.lipsIndex > 2) this.lipsIndex = 1;
+		this.lips.operate(this.lipsIndex);
+		if (this.lipsIndex === 1) {
+			TweenUtils.delayedCall(this.game.rnd.between(2500, 4000), this.animateLips, this);
+		}
+		else {
+			TweenUtils.delayedCall(this.game.rnd.between(1000, 2500), this.animateLips, this);
+		}
+	}
+	
+	stopLips() {
+		this.lipsAnimate = false;
+		this.lips.operate(2);
+	}
 
     on(item: string, index: number, ...off: string[]): boolean {
         for (let toOff of off) {
@@ -153,6 +233,30 @@ export class Doll {
     getBody(): Phaser.Group {
         return this.container;
     }
+    
+    getLayerSprite(layerName: string): Phaser.Sprite {
+    	return this.layers[layerName].getBody();
+    }
+    
+    fadeLayer(name: string, instantly: boolean = false) {
+	    const lr: DollLayer = this.layers[name];
+	    if (instantly) {
+	    	lr.getBody().alpha = 0;
+	    }
+	    else {
+		    TweenUtils.fadeOut(lr.getBody());
+	    }
+    }
+	
+	appearLayer(name: string, instantly: boolean = false) {
+		const lr: DollLayer = this.layers[name];
+		if (instantly) {
+			lr.getBody().alpha = 1;
+		}
+		else {
+			TweenUtils.fadeIn(lr.getBody());
+		}
+	}
 
     extract(): Doll {
         this.container.parent.removeChild(this.container);
@@ -170,6 +274,14 @@ export class Doll {
         for (let layer of this.layers) {
             layer.dispose();
         }
+        if (this.eyes) {
+        	this.eyes.dispose();
+        	this.eyes = null;
+        }
+	    if (this.lips) {
+		    this.lips.dispose();
+		    this.lips = null;
+	    }
         this.container.destroy(true);
     }
 }

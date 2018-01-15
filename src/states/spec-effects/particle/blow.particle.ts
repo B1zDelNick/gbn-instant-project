@@ -13,7 +13,7 @@ export class BlowParticles implements IParticle {
         private yy: number = 100) {
     }
 
-    init( asset: string, frames?: any|any[], rate: number = 70, w: number = 960, c: number = 480): void {
+    init( asset: string, frames?: any|any[], rate: number = 100, w: number = 960, c: number = 480): void {
         this.game = GameConfig.GAME;
         this.emitter = this.game.add.emitter(this.xx, this.yy, rate);
         // this.emitter.width = w;
@@ -28,10 +28,15 @@ export class BlowParticles implements IParticle {
     addToContainer(cont: Phaser.Group): void {
         cont.add(this.emitter);
     }
+    
+    setPos(x: number, y: number) {
+	    this.emitter.x = x;
+	    this.emitter.y = y;
+    }
 
     start(): void {
         // this.emitter.flow(7000, 500, 3, -1);
-        this.emitter.start(true, 4000, null, 15);
+        this.emitter.start(true, 4000, null, 40);
     }
 
     update(): void {

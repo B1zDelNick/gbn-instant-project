@@ -1,5 +1,4 @@
-import * as Assets from '../../../assets';
-import {GameConfig, Sites} from '../../../config/game.config';
+import {GameConfig} from '../../../config/game.config';
 import {isNull, isUndefined} from 'util';
 import {ImageUtils} from '../../../utils/images/image.utils';
 
@@ -38,23 +37,8 @@ export class DollLayer {
                 this.tempIndex = 0;
             }
         }
-        switch (GameConfig.SITE) {
-            case Sites.FREE_GAMES_CASUAL: {
-                this.guiAtlas = ImageUtils.getAtlasClass('AtlasesGuiFgc').getName();
-                this.dummyFrame = ImageUtils.getAtlasClass('AtlasesGuiFgc').Frames.Dummy;
-                break;
-            }
-            case Sites.MY_CUTE_GAMES: {
-                this.guiAtlas = ImageUtils.getAtlasClass('AtlasesGuiMcg').getName();
-                this.dummyFrame = ImageUtils.getAtlasClass('AtlasesGuiMcg').Frames.Dummy;
-                break;
-            }
-            case Sites.DRESSUP_MIX: {
-                this.guiAtlas = ImageUtils.getAtlasClass('AtlasesGuiDu').getName();
-                this.dummyFrame = ImageUtils.getAtlasClass('AtlasesGuiDu').Frames.Dummy;
-                break;
-            }
-        }
+        this.guiAtlas = ImageUtils.getAtlasClass('AtlasesGui').getName();
+        this.dummyFrame = ImageUtils.getAtlasClass('AtlasesGui').Frames.Dummy;
         const clazz = this.getClassForIndex(this.tempIndex);
         this.sprite = this.game.add.sprite(x, y,
             this.isEmpty || isNull(clazz) ? this.guiAtlas : clazz.getName(),
@@ -187,6 +171,10 @@ export class DollLayer {
             return ImageUtils.getAtlasClass(`${this.assetClass}22`);
         }
         return null;
+    }
+    
+    getBody(): Phaser.Sprite {
+    	return this.sprite;
     }
 
     remove() {

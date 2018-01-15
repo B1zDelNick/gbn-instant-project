@@ -1,0 +1,39 @@
+{"frames": [
+
+{
+	"filename": "fl_1.png",
+	"frame": {"x":0,"y":0,"w":254,"h":561},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":254,"h":561},
+	"sourceSize": {"w":254,"h":561},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fl_2.png",
+	"frame": {"x":0,"y":561,"w":254,"h":561},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":254,"h":561},
+	"sourceSize": {"w":254,"h":561},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fl_3.png",
+	"frame": {"x":0,"y":1122,"w":254,"h":561},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":254,"h":561},
+	"sourceSize": {"w":254,"h":561},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_manek_2.png",
+	"format": "RGBA8888",
+	"size": {"w":254,"h":1683},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ada8662c4394516209827ace9fb65b52:c2024a2758264ab3dbc14d827fe8e940:33c81189de012bb81c8e52bb5cd2f663$"
+}
+}

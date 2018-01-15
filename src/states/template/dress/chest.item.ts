@@ -27,10 +27,10 @@ export class ChestItem extends ChestItemBase {
         }
 
         let visible = true;
-        if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
+        /*if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
             if (GameConfig.PUB_MODE !== PublishMode.NORMAL)
                 visible = false;
-        }
+        }*/
 
         this.button =
             GuiUtils.makeButton(

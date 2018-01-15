@@ -16,7 +16,7 @@ export class PreloaderUtils {
             if (DEBUG)
                 console.log(`\nNo default Main Theme audio was found.`);
         }
-        this.soundAdditionalLoads();
+        // this.soundAdditionalLoads();
     }
 
     public static preloadEffects(): void {

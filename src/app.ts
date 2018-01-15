@@ -5,8 +5,19 @@ import Preloader from './states/preloader';
 import * as Utils from './utils/utils';
 import * as Assets from './assets';
 import Start from './states/start';
-import {AssetMode, GameConfig, PublishMode, Sites} from './config/game.config';
-import {SaverTemplates} from './states/saver/enum.saver';
+import {AssetMode, GadgetMode, GameConfig, PublishMode} from './config/game.config';
+import Select from './states/select';
+import Comix from './states/comix';
+import SelectStage from './states/select_stage';
+import Shopping from './states/shopping';
+import DressShopping from './states/dress_shopping';
+import RunawayShopping from './states/runaway_shopping';
+import DietMatching from './states/diet_matching';
+import DietDecor from './states/diet_decor';
+import ComixRivals from './states/comix_rivals';
+import HiddenRivals from './states/hidden_rivals';
+import SlackRivals from './states/slack_rivals';
+import RunawayRivals from './states/runaway_rivals';
 
 class App extends Phaser.Game {
     constructor(config: Phaser.IGameConfig) {
@@ -15,6 +26,18 @@ class App extends Phaser.Game {
         this.state.add('Boot', Boot);
         this.state.add('Preloader', Preloader);
         this.state.add('Start', Start);
+        this.state.add('Select', Select);
+        this.state.add('Comix', Comix);
+        this.state.add('SelectStage', SelectStage);
+        this.state.add('Shopping', Shopping);
+        this.state.add('DressShopping', DressShopping);
+        this.state.add('RunawayShopping', RunawayShopping);
+        this.state.add('DietMatching', DietMatching);
+        this.state.add('DietDecor', DietDecor);
+        this.state.add('ComixRivals', ComixRivals);
+        this.state.add('HiddenRivals', HiddenRivals);
+        this.state.add('SlackRivals', SlackRivals);
+        this.state.add('RunawayRivals', RunawayRivals);
 
         this.state.start('Boot');
     }
@@ -41,13 +64,11 @@ function startApp(): void {
     };
 
     let app = new App(gameConfig);
-
     GameConfig.init(
-        Sites.MY_CUTE_GAMES,
-        PublishMode.NORMAL,
+        app.device.desktop ? GadgetMode.DESKTOP : GadgetMode.MOBILE,
+        PublishMode.VK,
         AssetMode.LOAD_ALL,
-        SaverTemplates.NONE,
-        'BFFS Summer Memories');
+        'Next Supermodel Stars');
 
     GameConfig.GAME = app;
     // app.stage.disableVisibilityChange = true;

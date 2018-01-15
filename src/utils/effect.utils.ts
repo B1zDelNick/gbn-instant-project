@@ -5,6 +5,8 @@ import {FilterUtils} from './filter.utils';
 import {GameConfig} from '../config/game.config';
 import {TripleLaser} from '../states/spec-effects/laser/triple.laser';
 import {PentaLaser} from '../states/spec-effects/laser/penta.laser';
+import {StartLaser} from '../states/spec-effects/laser/start.laser';
+import * as Assets from '../assets';
 
 export class EffectUtils {
 
@@ -21,6 +23,10 @@ export class EffectUtils {
             }
             case LaserType.PENTA_LASER: {
                 laser = new PentaLaser();
+                break;
+            }
+            case LaserType.START_LASER: {
+                laser = new StartLaser();
                 break;
             }
         }
@@ -58,11 +64,26 @@ export class EffectUtils {
             period, Phaser.Easing.Linear.None, true, 0, repeat).yoyo(loop);
         return f;
     }
+	
+	public static makeBlurAnimation(target: any, blur: number = 4, period: number = 1000, loop: boolean = true, repeat: number = 999999): Phaser.Tween {
+		const game = GameConfig.GAME;
+		const blurXFilter = game.add.filter(Assets.Scripts.ScriptsBlurX.getName()) as Phaser.Filter.BlurX;
+		blurXFilter.blur = 0;
+		const blurYFilter = game.add.filter(Assets.Scripts.ScriptsBlurY.getName()) as Phaser.Filter.BlurY;
+		blurYFilter.blur = 0;
+		target.filters = [blurXFilter, blurYFilter];
+		game.add.tween(blurXFilter).to({ blur: blur },
+			period, Phaser.Easing.Linear.None, true, 0, repeat)
+			.yoyo(loop);
+		return game.add.tween(blurYFilter).to({ blur: blur },
+			period, Phaser.Easing.Linear.None, true, 0, repeat)
+			.yoyo(loop);
+	}
 
-    public static makeScaleAnimation(target: any, scale: number = 1.05, period: number = 1000, loop: boolean = true, dist: number = 350): Phaser.Tween {
+    public static makeScaleAnimation(target: any, scale: number = 1.05, period: number = 1000, loop: boolean = true, repeat: number = 99999): Phaser.Tween {
         const game = GameConfig.GAME;
         return game.add.tween(target.scale).to({ x: scale, y: scale },
-            period, Phaser.Easing.Linear.None, true, 0, 99999)
+            period, Phaser.Easing.Linear.None, true, 0, repeat)
             .yoyo(loop);
     }
 
@@ -74,17 +95,17 @@ export class EffectUtils {
             .yoyo(true);
     }
 
-    public static makeAlphaAnimation(target: any, alpha: number = 1, period: number = 500, loop: boolean = true): Phaser.Tween {
+    public static makeAlphaAnimation(target: any, alpha: number = 1, period: number = 500, loop: boolean = true, repeat: number = 99999): Phaser.Tween {
         const game = GameConfig.GAME;
         return game.add.tween(target).to({ alpha: alpha },
-            period, Phaser.Easing.Linear.None, true, 0, 99999)
+            period, Phaser.Easing.Linear.None, true, 0, repeat)
             .yoyo(loop);
     }
 
-    public static makeMoveAnimation(target: any, x: number, y: number, period: number = 500, loop: boolean = true): Phaser.Tween {
+    public static makeMoveAnimation(target: any, x: number, y: number, period: number = 500, loop: boolean = true, repeat: number = 99999): Phaser.Tween {
         const game = GameConfig.GAME;
         return game.add.tween(target).to({ x: x, y: y },
-            period, Phaser.Easing.Linear.None, true, 0, 99999)
+            period, Phaser.Easing.Linear.None, true, 0, repeat)
             .yoyo(loop);
     }
 

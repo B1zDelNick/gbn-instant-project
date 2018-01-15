@@ -1,48 +1,20 @@
 import {FilterUtils} from './filter.utils';
 import {GameConfig} from '../config/game.config';
-import {ISaver} from '../states/saver/i.saver';
-import {DefaultSaver} from '../states/saver/default.saver';
-import {SaverTemplates} from '../states/saver/enum.saver';
-import {VerticalSaver} from '../states/saver/vertical.saver';
 import {isString} from 'util';
-import {HorizontalSaver} from '../states/saver/horizontal.saver';
-import {VerticalNorthBigSaver} from '../states/saver/vertical.north.big.saver';
 
 export class GuiUtils {
-    public static getSaver(): ISaver {
-        let saver;
-
-        switch (GameConfig.SAVER_MODE) {
-            case SaverTemplates.V_N_FADE_BIG_SLIDER_TEMPLATE: {
-                saver = new VerticalNorthBigSaver();
-                break;
-            }
-            case SaverTemplates.V_FADE_SLIDER_TEMPLATE: {
-                saver = new VerticalSaver();
-                break;
-            }
-            case SaverTemplates.H_FADE_SLIDER_TEMPLATE: {
-                saver = new HorizontalSaver();
-                break;
-            }
-            case SaverTemplates.CUSTOM: {
-                saver = new DefaultSaver();
-                break;
-            }
-            case SaverTemplates.NONE: {
-                saver = null;
-                break;
-            }
-        }
-
-        return saver;
-    }
 
     public static centrize(target: any): void {
         target.anchor.set(0.5);
         target.x = target.x + target.width / 2;
         target.y = target.y + target.height / 2;
     }
+	
+	public static centrizeCustom(target: any, x: number, y: number): void {
+		target.anchor.setTo(x, y);
+		target.x = target.x + target.width * x;
+		target.y = target.y + target.height * y;
+	}
 
     public static makeButton(
         parent: any, container: Phaser.Group,
@@ -250,31 +222,5 @@ export class GuiUtils {
         sprite.filters = null;
         GameConfig.GAME.tweens.removeFrom(sprite.scale);
         GameConfig.GAME.add.tween(sprite.scale).to({ x: .8, y: .8 }, 250, Phaser.Easing.Linear.None, true);
-    }
-
-    public static goLinkInMoreGames() {
-        window.open(GameConfig.inMoreGamesUrl());
-    }
-
-    public static goLinkPreloaderLogo() {
-        window.open(GameConfig.preloaderLogoUrl());
-    }
-
-    public static goLinkPreloaderCategory() {
-        window.open(GameConfig.preloaderCategoryUrl());
-    }
-
-    public static goLinkMainLogo() {
-        window.open(GameConfig.mainLogoUrl());
-    }
-
-    public static goLinkMainMoreGames() {
-        window.open(GameConfig.mainMoreGamesUrl());
-    }
-
-    public static goCross(game: string): Function {
-        return () => {
-            window.open(GameConfig.crossUrl(game), '_blank');
-        };
     }
 }

@@ -108,6 +108,21 @@ export class Chest {
         }
         return isUndefined(item) || isNull(item) ? null : item.button;
     }
+	
+	findShelf(name: string): Phaser.Sprite {
+		let item: Phaser.Sprite = null;
+		if (this.staticPage !== null) {
+			item = this.staticPage.findShelf(name);
+		}
+		if (item === null && this.pages.length > 0) {
+			for (let page of this.pages) {
+				item = page.findShelf(name);
+				if (item !== null)
+					break;
+			}
+		}
+		return item;
+	}
 
     show(): void {
         this.disable();
@@ -124,14 +139,14 @@ export class Chest {
     public showPage(index: number) {
         this.currentPage = index;
         for (let i = 0; i < this.pages.length; i++) {
-            this.pages[i].hide();
+            this.pages[i].hide(this.config.smoothShow);
         }
-        this.pages[this.currentPage].show();
+        this.pages[this.currentPage].show(this.config.smoothShow);
         if (this.pages[this.currentPage].hideStatic) {
-            if (this.staticPage) this.staticPage.hide();
+            if (this.staticPage) this.staticPage.hide(this.config.smoothShow);
         }
         else {
-            if (this.staticPage) this.staticPage.show();
+            if (this.staticPage) this.staticPage.show(this.config.smoothShow);
         }
     }
 
@@ -139,14 +154,14 @@ export class Chest {
         this.currentPage++;
         if (this.currentPage > this.pages.length - 1) this.currentPage = 0;
         for (let i = 0; i < this.pages.length; i++) {
-            this.pages[i].hide();
+            this.pages[i].hide(this.config.smoothShow);
         }
-        this.pages[this.currentPage].show();
+        this.pages[this.currentPage].show(this.config.smoothShow);
         if (this.pages[this.currentPage].hideStatic) {
-            if (this.staticPage) this.staticPage.hide();
+            if (this.staticPage) this.staticPage.hide(this.config.smoothShow);
         }
         else {
-            if (this.staticPage) this.staticPage.show();
+            if (this.staticPage) this.staticPage.show(this.config.smoothShow);
         }
     }
 
@@ -154,14 +169,14 @@ export class Chest {
         this.currentPage--;
         if (this.currentPage < 0) this.currentPage = this.pages.length - 1;
         for (let i = 0; i < this.pages.length; i++) {
-            this.pages[i].hide();
+            this.pages[i].hide(this.config.smoothShow);
         }
-        this.pages[this.currentPage].show();
+        this.pages[this.currentPage].show(this.config.smoothShow);
         if (this.pages[this.currentPage].hideStatic) {
-            if (this.staticPage) this.staticPage.hide();
+            if (this.staticPage) this.staticPage.hide(this.config.smoothShow);
         }
         else {
-            if (this.staticPage) this.staticPage.show();
+            if (this.staticPage) this.staticPage.show(this.config.smoothShow);
         }
     }
 
@@ -301,10 +316,10 @@ export class Chest {
         }
 
         let visible = true;
-        if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
+        /*if  ((name.indexOf('mmmm') !== -1) || (name.indexOf('cross') !== -1)) {
             if (GameConfig.PUB_MODE !== PublishMode.NORMAL)
                 visible = false;
-        }
+        }*/
 
         this.btns.push(
             GuiUtils.makeButton(
@@ -419,4 +434,5 @@ export class Chest {
 
 interface IChestConfig {
     hideSelected?: boolean;
+    smoothShow?: boolean;
 }
