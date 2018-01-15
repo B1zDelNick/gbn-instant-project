@@ -30,9 +30,17 @@ export default class RunawayRivals extends Phaser.State {
 	private viral: ShareWindow = null;
     private spinner: Phaser.Sprite = null;
     private blocker: Phaser.Graphics = null;
+	private curDr: number = -1;
+	private curSh: number = -1;
+	private curAc: number = -1;
+	private curHr: number = -1;
 
     public init(...args: any[]): void {
 	    this.gui = new InstantGui(this);
+	    this.curDr = args[0] as number;
+	    this.curSh = args[1] as number;
+	    this.curHr = args[2] as number;
+	    this.curAc = args[3] as number;
     }
 
     public preload(): void {
@@ -68,45 +76,86 @@ export default class RunawayRivals extends Phaser.State {
 	    this.fl3.alpha = 0;
 	
 	    this.doll = new Doll(this, 301, 99)
-		    .layer(1, -19, 'hair_b',
-			    'AtlasesDollManek',
+		    .layer(39, -70, 'hair_b',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'HB', null)
-		    .layer(-135, 114, 'acs_z',
-			    'AtlasesDollManek',
+		    .layer(-94, 64, 'acs_z',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'AcZ', null)
-		    .layer(-65, 405, 'dress_b',
-			    'AtlasesDollManek',
+		    .layer(-24, 363, 'dress_b',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'DB', null)
 		    .layer(0, 0, 'body',
-			    'AtlasesStateRivalsSlacking',
-			    'Man', 'Man')
-		    .layer(61, 298, 'shoe',
-			    'AtlasesDollManek',
-			    'S', null)
-		    .layer(-65, 405, 'dress_l',
-			    'AtlasesDollManek',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Body', 'Body')
+		    .layer(44, 271, 'dress_l',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'DL', null)
-		    .layer(-49, 492, 'acs_x',
-			    'AtlasesDollManek',
+		    .layer(42, 250, 'shoe_b',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'SB', null)
+		    .layer(-64, 305, 'acs_x',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'AcX', null)
-		    .layer(-120, -15, 'dress',
-			    'AtlasesDollManek',
-			    'D', 'D')
-		    .flashL(-60, 146, 'flash',
-			    'AtlasesDollManek',
-			    'Fl', 'Fl')
-		    .layer(-111, 122, 'acs_c',
-			    'AtlasesDollManek',
-			    'AcC', null)
-		    .layer(-23, -69, 'hair',
-			    'AtlasesDollManek',
-			    'H', null)
-		    .layer(-95, -16, 'dress_f',
-			    'AtlasesDollManek',
+		    .layer(25, 71, 'dress_c',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'DC', null)
+		    .layer(71, 651, 'shoe',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'S', null)
+		    .layer(-18, 37, 'dress',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'D', null)
+		    .layer(69, -58, 'head',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Head', 'Head')
+		    .lipsL(69, -58, 'lips',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Lp', 'Lp')
+		    .eyesL(69, -58, 'eyes',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Ee', 'Ee')
+		    .layer(69, -58, 'sad',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Sad', 'Sad')
+		    .layer(69, -58, 'angry',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Angry', 'Angry')
+		    .layer(69, -58, 'smile',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Smile', 'Smile')
+		    .layer(-94, -117, 'dress_f',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'DF', null)
-		    .layer(-31, -14, 'acs_v',
-			    'AtlasesDollManek',
+		    .layer(-94, 65, 'acs_c',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'AcC', null)
+		    .layer(15, -117, 'hair',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'H', null)
+		    .layer(-57, -67, 'dress_t',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'DT', null)
+		    .layer(13, -61, 'acs_v',
+			    'AtlasesDollAlisaRunawayRivals',
 			    'AcV', null);
+	    this.doll.on('dress', this.curDr);
+	    this.doll.on('dress_b', this.curDr);
+	    this.doll.on('dress_f', this.curDr);
+	    this.doll.on('dress_t', this.curDr);
+	    this.doll.on('dress_l', this.curDr);
+	    this.doll.on('dress_c', this.curDr);
+	    this.doll.on('hair', this.curHr);
+	    this.doll.on('hair_b', this.curHr);
+	    this.doll.on('shoe', this.curSh);
+	    this.doll.on('shoe_b', this.curSh);
+	    this.doll.on('acs_z', this.curAc);
+	    this.doll.on('acs_x', this.curAc);
+	    this.doll.on('acs_c', this.curAc);
+	    this.doll.on('acs_v', this.curAc);
+	    this.doll.setPosition(230, 225);
+	    this.doll.setScale(.396);
+	    this.doll.setAlpha(0);
 
 	    this.container.add(this.bg);
 	    this.container.add(this.laser.getContainer());
@@ -167,7 +216,7 @@ export default class RunawayRivals extends Phaser.State {
 	    EffectUtils.makeAlphaAnimation(this.fl2, 1, Phaser.Timer.SECOND * .7);
 	    EffectUtils.makeAlphaAnimation(this.fl3, 1, Phaser.Timer.SECOND * .6);
 	    TweenUtils.fadeIn(this.doll.getBody(), Phaser.Timer.SECOND * .5, Phaser.Timer.SECOND * 1, () => {
-	    	TweenUtils.moveAndScaleIn(this.doll.getBody(), 34, 149, 1, Phaser.Timer.SECOND * 1.5, Phaser.Timer.SECOND * 0, () => {
+	    	TweenUtils.moveAndScaleIn(this.doll.getBody(), 152, 166, 1, Phaser.Timer.SECOND * 1.5, Phaser.Timer.SECOND * 0, () => {
 	    		TweenUtils.fadeAndScaleIn(playBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1);
 		    }, this);
 	    }, this);
