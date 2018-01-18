@@ -3,9 +3,9 @@ import {isNull, isUndefined} from 'util';
 
 export class TweenUtils {
 
-    public static kill(target: any) {
+    public static kill(target: any, children: boolean = false) {
         const game = GameConfig.GAME;
-        game.tweens.removeFrom(target);
+        game.tweens.removeFrom(target, children);
     }
 
     public static frameChangeAnimation(target: any, asset: string, frame1: any, frame2: any) {
@@ -302,7 +302,6 @@ export class TweenUtils {
                 target.inputEnabled = true;
             }, this);
         }
-
         const tw1 = game.add.tween(target).to({ alpha: 1 }, duration, Phaser.Easing.Linear.None, true, delay);
         const tw2 = game.add.tween(target.scale).to({ x: 1, y: 1 }, duration * 2, Phaser.Easing.Elastic.Out, true, delay);
         if (!isNull(callBack) && !isUndefined(callBack))
@@ -311,6 +310,26 @@ export class TweenUtils {
             tw1, tw2
         ];
     }
+	
+	public static fadeAndDoubleScaleIn(target: any, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween[] {
+		const game = GameConfig.GAME;
+		this.kill(target);
+		if (target.inputEnabled) {
+			target.inputEnabled = false;
+			TweenUtils.delayedCall(duration + delay + 5, () => {
+				target.inputEnabled = true;
+			}, this);
+		}
+		const tw1 = game.add.tween(target).to({ alpha: 1 }, duration, Phaser.Easing.Linear.None, true, delay);
+		const tw2 = game.add.tween(target.scale).to({ x: 2, y: 2 }, duration * 1.5, Phaser.Easing.Elastic.Out, true, delay);
+		const tw3 = game.add.tween(target.scale).to({ x: 1, y: 1 }, duration * .5, Phaser.Easing.Linear.None, false, 0);
+		tw2.chain(tw3);
+		if (!isNull(callBack) && !isUndefined(callBack))
+			tw2.onComplete.addOnce(callBack, context);
+		return [
+			tw1, tw2
+		];
+	}
 
     public static fadeAndScale(target: any, scale: number, alpha: number, duration: number = 500, delay: number = 0, callBack?: Function, context?: any): Phaser.Tween[] {
         const game = GameConfig.GAME;

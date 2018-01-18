@@ -12,10 +12,13 @@ import {HandyUtils} from '../utils/utility/handy.utils';
 import {MatchCard} from './template/match/MatchCard';
 import {isNull} from 'util';
 import {EffectUtils} from '../utils/effect.utils';
+import {SoundUtils} from '../utils/sound/sound.utils';
+import {ShareScoreWindow} from '../utils/viral/share.score.window';
+import {ViralUtils} from '../utils/viral/viral.utils';
 
 export default class DietMatching extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'DietDecor';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -27,8 +30,8 @@ export default class DietMatching extends Phaser.State {
 	private txt: Phaser.Sprite = null;
 	private panel: Phaser.Sprite = null;
 	private stagePanel: Phaser.Sprite = null;
-	private label: Phaser.Sprite = null;
 	private stageTxt: Phaser.Sprite = null;
+	private label: Phaser.Sprite = null;
 	private scoreText: Phaser.BitmapText = null;
 	private goBtn: Phaser.Button = null;
 	private playBtn: Phaser.Button = null;
@@ -38,6 +41,7 @@ export default class DietMatching extends Phaser.State {
     private doll: Doll = null;
     private spinner: Phaser.Sprite = null;
     private blocker: Phaser.Graphics = null;
+	private viral: ShareScoreWindow = null;
 	
 	private tipShowing: boolean = true;
 	private animating: boolean = false;
@@ -63,6 +67,7 @@ export default class DietMatching extends Phaser.State {
 	    this.total = 0;
 	    this.curTimeInSeconds = 0;
 	    this.score = 0;
+	    SoundUtils.play('DietTheme');
     }
 
     public preload(): void {
@@ -90,14 +95,20 @@ export default class DietMatching extends Phaser.State {
 	
 	    this.panel = this.game.add.sprite(152, 0 - 300,
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.Panel);
+		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.Panel,
+		    this.container
+	    );
 	    this.label = this.game.add.sprite(0, 0,
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames['Score' + GameConfig.LOCALE]);
+		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames['Score' + GameConfig.LOCALE],
+		    this.container
+	    );
 	    this.scoreText = this.game.add.bitmapText(
 		    this.game.world.centerX, 70 - 300,
 		    ImageUtils.getBitmapFontClass('FontsFontBig').getName(),
-		    '0', 65);
+		    '0', 65,
+		    this.container
+	    );
 	    this.scoreText.anchor.setTo(0.5);
 	    GuiUtils.centrize(this.label);
 	    this.label.position.setTo(270, 30 - 300);
@@ -151,8 +162,17 @@ export default class DietMatching extends Phaser.State {
 	    GuiUtils.centrize(this.txt);
 	    this.txt.position.setTo(270, 710);
 	    this.txt.alpha = 0;
-
-        // GUI Buttons
+	
+	    this.viral = ViralUtils.addShareScoreWindow();
+	    this.viral.setListeners(() => {
+		    this.viral.hide();
+		    // unbluring stage
+		    TweenUtils.delayedCall(500, () => {
+			    EffectUtils.makeBlurAnimation(this.container, 0, 1500, false, 0);
+		    }, this);
+	    }, this);
+	
+	    // GUI Buttons
 	    this.gui.addGui();
 	    this.gui.addPhotoBtn(null);
 	    this.hintBtn = this.gui.addHintBtn(this.showTip);
@@ -197,9 +217,33 @@ export default class DietMatching extends Phaser.State {
 		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null);
 	    this.goBtn.alpha = 0;
 	    this.goBtn.scale.setTo(0);
-	    this.playBtn = this.gui.addPlayBtn(GuiButtons.RIGHT, this.nextState, 204, 834);
+	    this.playBtn = this.gui.addPlayBtn(GuiButtons.DONE, () => {
+		    TweenUtils.fadeAndScaleOut(this.playBtn);
+		    // bluring stage
+		    TweenUtils.delayedCall(500, () => {
+			    EffectUtils.makeBlurAnimation(this.container, 16, 1500, false, 0);
+		    }, this);
+		    // screenshot
+		    const bmd = this.game.add.bitmapData(this.game.width, this.game.height);
+		    this.viral.setScreen(bmd.addToWorld(270, 600, .5, .5, 0.85, 0.85));
+		    this.game.stage.updateTransform();
+		    bmd.drawGroup(this.container); //  this.game.world);
+		    // viral
+		    TweenUtils.delayedCall(1000, () => {
+			    this.viral.show(1000); // this.score);
+			    TweenUtils.fadeAndScaleIn(nextBtn, 750, 1000);
+		    }, this);
+	    }, 216, 840);
 	    this.playBtn.alpha = 0;
 	    this.playBtn.scale.setTo(0);
+	    const nextBtn = this.gui.addExtraBtn(216, 840,
+		    ImageUtils.getAtlasClass('AtlasesGui').getName(),
+		    ImageUtils.getAtlasClass('AtlasesGui').Frames.RightBtn, this.nextState,
+		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandlerMcg : null,
+		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null
+	    );
+	    nextBtn.alpha = 0;
+	    nextBtn.scale.setTo(0);
 
         // Animations goes here
 	    this.game.camera.flash(0x000000, 1000, true);
@@ -354,6 +398,8 @@ export default class DietMatching extends Phaser.State {
 	}
 	
 	private endLevel() {
+		if (SoundUtils.isSoundEnabled())
+			SoundUtils.playFX('SubLevelDone');
 		this.completed = true;
 		let delay = .1;
 		for (let c of this.cards) {

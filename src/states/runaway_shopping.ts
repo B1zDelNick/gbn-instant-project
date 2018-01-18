@@ -13,7 +13,7 @@ import {GuiUtils} from '../utils/gui.utils';
 
 export default class RunawayShopping extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'END';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -85,6 +85,13 @@ export default class RunawayShopping extends Phaser.State {
 	    this.lll.alpha = 0;
 	    
 	    this.viral = ViralUtils.addShareWindow();
+	    this.viral.setListeners(() => {
+		    this.viral.hide();
+		    // unbluring stage
+		    TweenUtils.delayedCall(500, () => {
+			    EffectUtils.makeBlurAnimation(this.container, 0, 1500, false, 0);
+		    }, this);
+	    }, this);
 	    
         // GUI Buttons
 	    this.gui.addGui();

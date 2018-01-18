@@ -1,6 +1,6 @@
 import {GuiButtons} from './enum.gui';
 export interface IGui {
-    addGui(): void;
+    addGui(addGear?: boolean): void;
     addPlayBtn(type: GuiButtons, callback?: Function, x?: number, y?: number): Phaser.Button;
     addMoreBtn(): Phaser.Button;
     addExtraMore(x: number, y: number, asset: string, frames?: any|any[], overHandler?: Function, outHandler?: Function, callback?: Function): Phaser.Button;

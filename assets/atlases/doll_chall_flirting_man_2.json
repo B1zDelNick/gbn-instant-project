@@ -1,0 +1,111 @@
+{"frames": [
+
+{
+	"filename": "body.png",
+	"frame": {"x":0,"y":0,"w":272,"h":729},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":272,"h":729},
+	"sourceSize": {"w":272,"h":729},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_1.png",
+	"frame": {"x":272,"y":0,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_2.png",
+	"frame": {"x":0,"y":729,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ee_3.png",
+	"frame": {"x":80,"y":729,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "gs.png",
+	"frame": {"x":160,"y":729,"w":78,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":39},
+	"sourceSize": {"w":78,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "h.png",
+	"frame": {"x":238,"y":729,"w":100,"h":127},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":127},
+	"sourceSize": {"w":100,"h":127},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "hl.png",
+	"frame": {"x":0,"y":856,"w":25,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":24},
+	"sourceSize": {"w":25,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "hr.png",
+	"frame": {"x":25,"y":856,"w":26,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":26,"h":23},
+	"sourceSize": {"w":26,"h":23},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_1.png",
+	"frame": {"x":51,"y":856,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lp_2.png",
+	"frame": {"x":131,"y":856,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sad.png",
+	"frame": {"x":211,"y":856,"w":80,"h":107},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":107},
+	"sourceSize": {"w":80,"h":107},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "doll_chall_flirting_man_2.png",
+	"format": "RGBA8888",
+	"size": {"w":352,"h":963},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:886337905b7568c01118ae3e70431f45:ea2721b233d1a25b36ed6167f8066a90:5c2e3667568028d249d428601ca652a4$"
+}
+}

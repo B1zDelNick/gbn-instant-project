@@ -10,10 +10,11 @@ import {EffectUtils} from '../utils/effect.utils';
 import {Chest} from './template/dress/chest';
 import {BlowParticles} from './spec-effects/particle/blow.particle';
 import {IParticle} from './spec-effects/particle/i.particle';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class HiddenRivals extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'SlackRivals';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -23,6 +24,7 @@ export default class HiddenRivals extends Phaser.State {
 	private fader: Phaser.Graphics = null;
     private bg: Phaser.Sprite = null;
     private txt: Phaser.Sprite = null;
+    private left: Phaser.Sprite = null;
     private cloud: Phaser.Sprite = null;
 	private playBtn: Phaser.Button = null;
 	private closeBtn: Phaser.Button = null;
@@ -163,6 +165,11 @@ export default class HiddenRivals extends Phaser.State {
 	    this.chest.findShelf('back6').visible = false;
 	    this.chest.disable();
 	
+	    this.left = this.game.add.sprite(270, 0,
+		    ImageUtils.getAtlasClass('AtlasesStateRivalsHidden').getName(),
+		    ImageUtils.getAtlasClass('AtlasesStateRivalsHidden').Frames['L10']);
+	    this.left.alpha = 0;
+	    
 	    this.particle = new BlowParticles(.5, 1);
 	    this.particle.init(
 		    ImageUtils.getAtlasClass('AtlasesEffects').getName(),
@@ -227,6 +234,7 @@ export default class HiddenRivals extends Phaser.State {
 			    TweenUtils.slideOut(this.doll.getBody(), 162 + 540, Phaser.Timer.SECOND * 1, Phaser.Timer.SECOND * 1, () => {
 				    TweenUtils.fadeAndScaleIn(this.hintBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 0);
 				    // Highlight items once
+				    TweenUtils.fadeIn(this.left);
 				    //
 				    TweenUtils.delayedCall(Phaser.Timer.SECOND * 1, () => {
 					    this.tipShowing = false;
@@ -238,12 +246,12 @@ export default class HiddenRivals extends Phaser.State {
 		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null);
 	    this.closeBtn.alpha = 0;
 	    this.closeBtn.scale.setTo(0);
-	    this.playBtn = this.gui.addExtraBtn(216, 840,
+	    /*this.playBtn = this.gui.addExtraBtn(216, 840,
 		    ImageUtils.getAtlasClass('AtlasesGui').getName(),
 		    ImageUtils.getAtlasClass('AtlasesGui').Frames.RightBtn, this.nextState,
 		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandlerMcg : null,
 		    GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null
-	    );
+	    );*/
 	    this.playBtn = this.gui.addPlayBtn(GuiButtons.RIGHT, () => {
 		    TweenUtils.fadeAndScaleOut(this.playBtn, 500, 0, this.nextState, this);
 	    }, 216, 840);
@@ -271,11 +279,23 @@ export default class HiddenRivals extends Phaser.State {
 	private onTool(sprite: Phaser.Button) {
     	const name = sprite.name;
     	if (name.indexOf('item') !== -1) {
+		    if (SoundUtils.isSoundEnabled())
+			    SoundUtils.playFX('Correct2');
     		TweenUtils.customFadeAndScaleIn(sprite, 1, 1.15, 750, 0, () => {
+			    if (this.total === 9) {
+				    TweenUtils.fadeOut(this.left);
+			    }
+			    else {
+				    this.left.loadTexture(
+					    ImageUtils.getAtlasClass('AtlasesStateRivalsHidden').getName(),
+					    ImageUtils.getAtlasClass('AtlasesStateRivalsHidden').Frames['L' + (9 - this.total)]);
+			    }
 			    TweenUtils.fadeAndScaleOut(sprite, 500, 0, () => {
 				    sprite.visible = false;
 				    this.total++;
 				    if (this.total === 10) {
+					    if (SoundUtils.isSoundEnabled())
+						    SoundUtils.playFX('SubLevelDone');
 					    TweenUtils.fadeAndScaleOut(this.hintBtn);
 				    	TweenUtils.fadeAndScaleIn(this.playBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1);
 				    }

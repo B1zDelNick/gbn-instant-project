@@ -9,7 +9,7 @@ import {Doll} from './template/dress/doll';
 
 export default class Comix extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'SelectStage';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -33,9 +33,7 @@ export default class Comix extends Phaser.State {
     }
 
     public create(): void {
-		/////////////////////////// !!!!!!!!!!!!!!!
-	    GameConfig.SELECTED_ACTOR = 3;
-	    /////////////////////////// !!!!!!!!!!!!!!!
+
         this.bg = this.game.add.sprite(0, 0, ImageUtils.getImageClass('ImagesBg3').getName());
 
 	    this.doll = new Doll(this, 80 + 540, 228)
@@ -82,8 +80,6 @@ export default class Comix extends Phaser.State {
 
         // GUI Buttons
 	    this.gui.addGui();
-	    this.gui.addPhotoBtn(null);
-	    this.gui.addHintBtn(null);
 	    const playBtn = this.gui.addPlayBtn(GuiButtons.GO, () => {
 	    	TweenUtils.fadeAndScaleOut(playBtn);
 		    this.game.add.tween(this.cloud).to({ y: 421 + 550 }, Phaser.Timer.SECOND * 1, Phaser.Easing.Circular.In, true, Phaser.Timer.SECOND * .5);

@@ -37,9 +37,10 @@ export class InstantGui implements IGui {
         this.state = state;
     }
 
-    addGui(): void {
+    addGui(addGear: boolean = true): void {
         this.guiContainer = this.game.add.group();
-        this.addGearBtn();
+        if (addGear)
+            this.addGearBtn();
     }
 
     addGearBtn(): Phaser.Button {
@@ -100,12 +101,12 @@ export class InstantGui implements IGui {
         this.copyButton =
             GuiUtils.makeButton(
                 this.state, this.guiContainer,
-                226, 0, 1,
+                226, 5, 1,
                 '', ImageUtils.getAtlasClass('AtlasesGui').getName(),
                 ImageUtils.getAtlasClass('AtlasesGui').Frames.DArrowBtn,
                 true, false, true, callback,
-                GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandlerMcg : null,
-                GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null);
+                GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandler : null,
+                GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandler : null);
         return this.copyButton;
     }
     
@@ -338,16 +339,26 @@ export class InstantGui implements IGui {
             this.playButton.filters = null;
             TweenUtils.fadeAndScaleOut(this.playButton);
         }
-        this.musonButton.inputEnabled = false;
-        this.musonButton.filters = null;
-        this.musoffButton.inputEnabled = false;
-        this.musoffButton.filters = null;
-	    this.sndonButton.inputEnabled = false;
-	    this.sndonButton.filters = null;
-	    this.sndoffButton.inputEnabled = false;
-	    this.sndoffButton.filters = null;
-	    this.gearButton.inputEnabled = false;
-	    this.gearButton.filters = null;
+	    if (this.musonButton) {
+		    this.musonButton.inputEnabled = false;
+		    this.musonButton.filters = null;
+	    }
+	    if (this.musoffButton) {
+		    this.musoffButton.inputEnabled = false;
+		    this.musoffButton.filters = null;
+	    }
+	    if (this.sndonButton) {
+		    this.sndonButton.inputEnabled = false;
+		    this.sndonButton.filters = null;
+	    }
+	    if (this.sndoffButton) {
+		    this.sndoffButton.inputEnabled = false;
+		    this.sndoffButton.filters = null;
+	    }
+	    if (this.gearButton) {
+		    this.gearButton.inputEnabled = false;
+		    this.gearButton.filters = null;
+	    }
 	    if (this.photoButton) {
 		    this.photoButton.inputEnabled = false;
 		    this.photoButton.filters = null;
@@ -366,8 +377,10 @@ export class InstantGui implements IGui {
         SoundUtils.onSwitchAudio.removeAll(this);
         SoundUtils.onSwitchSound.removeAll(this);
         if (!isNull(this.playButton)) this.playButton.destroy(true);
-        this.musonButton.destroy(true);
-        this.musoffButton.destroy(true);
+	    if (!isNull(this.musonButton)) this.musonButton.destroy(true);
+	    if (!isNull(this.musoffButton)) this.musoffButton.destroy(true);
+	    if (!isNull(this.sndoffButton)) this.sndoffButton.destroy(true);
+	    if (!isNull(this.sndonButton)) this.sndonButton.destroy(true);
         if (!isNull(this.moreButton)) this.moreButton.destroy(true);
         if (!isNull(this.moreButton2)) this.moreButton2.destroy(true);
         for (let btn of this.extras) {

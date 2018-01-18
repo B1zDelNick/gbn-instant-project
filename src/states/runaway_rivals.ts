@@ -11,10 +11,11 @@ import {ShareWindow} from '../utils/viral/share.window';
 import {ViralUtils} from '../utils/viral/viral.utils';
 import {GuiUtils} from '../utils/gui.utils';
 import {Doll} from './template/dress/doll';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class RunawayRivals extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'Done';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -118,12 +119,12 @@ export default class RunawayRivals extends Phaser.State {
 		    .layer(69, -58, 'sad',
 			    'AtlasesDollAlisaRunawayRivals',
 			    'Sad', 'Sad')
-		    .layer(69, -58, 'angry',
-			    'AtlasesDollAlisaRunawayRivals',
-			    'Angry', 'Angry')
 		    .layer(69, -58, 'smile',
 			    'AtlasesDollAlisaRunawayRivals',
 			    'Smile', 'Smile')
+		    .layer(69, -58, 'angry',
+			    'AtlasesDollAlisaRunawayRivals',
+			    'Angry', 'Angry')
 		    .layer(-94, -117, 'dress_f',
 			    'AtlasesDollAlisaRunawayRivals',
 			    'DF', null)
@@ -156,6 +157,8 @@ export default class RunawayRivals extends Phaser.State {
 	    this.doll.setPosition(230, 225);
 	    this.doll.setScale(.396);
 	    this.doll.setAlpha(0);
+	    this.doll.getLayerSprite('sad').alpha = 0;
+	    this.doll.getLayerSprite('angry').alpha = 0;
 
 	    this.container.add(this.bg);
 	    this.container.add(this.laser.getContainer());
@@ -170,6 +173,13 @@ export default class RunawayRivals extends Phaser.State {
 	    this.lll.alpha = 0;
 	    
 	    this.viral = ViralUtils.addShareWindow();
+	    this.viral.setListeners(() => {
+		    this.viral.hide();
+		    // unbluring stage
+		    TweenUtils.delayedCall(500, () => {
+			    EffectUtils.makeBlurAnimation(this.container, 0, 1500, false, 0);
+		    }, this);
+	    }, this);
 	    
         // GUI Buttons
 	    this.gui.addGui();
@@ -217,7 +227,41 @@ export default class RunawayRivals extends Phaser.State {
 	    EffectUtils.makeAlphaAnimation(this.fl3, 1, Phaser.Timer.SECOND * .6);
 	    TweenUtils.fadeIn(this.doll.getBody(), Phaser.Timer.SECOND * .5, Phaser.Timer.SECOND * 1, () => {
 	    	TweenUtils.moveAndScaleIn(this.doll.getBody(), 152, 166, 1, Phaser.Timer.SECOND * 1.5, Phaser.Timer.SECOND * 0, () => {
-	    		TweenUtils.fadeAndScaleIn(playBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1);
+	    		TweenUtils.delayedCall(50, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile1');
+			    }, this);
+			    TweenUtils.delayedCall(100, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile2');
+			    }, this);
+			    TweenUtils.delayedCall(300, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile2');
+			    }, this);
+			    TweenUtils.delayedCall(400, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile1');
+			    }, this);
+			    TweenUtils.delayedCall(500, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile1');
+			    }, this);
+			    TweenUtils.delayedCall(700, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile2');
+			    }, this);
+			    TweenUtils.delayedCall(900, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile1');
+			    }, this);
+			    TweenUtils.delayedCall(900, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile2');
+			    }, this);
+	    		TweenUtils.fadeIn(this.doll.getLayerSprite('angry'), 500, 1000, () => {
+				    TweenUtils.fadeAndScaleIn(playBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1);
+			    }, this);
 		    }, this);
 	    }, this);
 

@@ -13,26 +13,27 @@ export class SoundUtils {
     private static currentTheme: string;
 
     public static init(mainTheme?: string): void {
-        if (!mainTheme && !isUndefined(Assets.Audio['AudioMainTheme'])) {
-            mainTheme = Assets.Audio['AudioMainTheme'].getName();
-        }
-        this.currentTheme = mainTheme;
+        this.currentTheme = 'MainTheme';
         this.onSwitchAudio = new Phaser.Signal();
         this.onSwitchSound = new Phaser.Signal();
 
         if (isNull(this.currentTheme) || isUndefined(this.currentTheme)) return;
 
-        this.audios[mainTheme] = GameConfig.GAME.sound.play(mainTheme, 0.5, true);
+        this.audios['MainTheme'] = GameConfig.GAME.sound.play(Assets.Audio.AudioMainTheme.getName(), 0.5, true);
+	    this.audios['ShopTheme'] = GameConfig.GAME.sound.add(Assets.Audio.AudioShopTheme.getName(), 0.5, true);
+	    this.audios['DietTheme'] = GameConfig.GAME.sound.add(Assets.Audio.AudioShopTheme.getName(), 0.5, true);
+	    this.audios['RivalsTheme'] = GameConfig.GAME.sound.add(Assets.Audio.AudioRivalsTheme.getName(), 0.5, true);
+	    this.audios['PhotoTheme'] = GameConfig.GAME.sound.add(Assets.Audio.AudioPhotoTheme.getName(), 0.5, true);
     }
 
 	public static soundSwitch(): void {
 		SoundUtils.globalSoundEnabled = !SoundUtils.globalSoundEnabled;
-		if (SoundUtils.globalSoundEnabled) {
+		/*if (SoundUtils.globalSoundEnabled) {
 			SoundUtils.globalSoundEnabled = false;
 		}
 		else {
 			SoundUtils.globalSoundEnabled = true;
-		}
+		}*/
 		SoundUtils.onSwitchSound.dispatch();
 	}
 
@@ -59,6 +60,10 @@ export class SoundUtils {
         (SoundUtils.audios[SoundUtils.currentTheme] as Phaser.Sound).volume = SoundUtils.globalMusicEnabled ? .5 : 0;
         (SoundUtils.audios[SoundUtils.currentTheme] as Phaser.Sound).play();
     }
+	
+	public static playFX(name: string): void {
+		GameConfig.GAME.sound.play(Assets.Audio['Audio' + name].getName());
+	}
 
     public static isSoundEnabled(): boolean {
         return this.globalSoundEnabled;

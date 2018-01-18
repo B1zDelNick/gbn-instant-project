@@ -10,6 +10,7 @@ import {HandyUtils} from '../utils/utility/handy.utils';
 import {IParticle} from './spec-effects/particle/i.particle';
 import {BlowParticles} from './spec-effects/particle/blow.particle';
 import {EffectUtils} from '../utils/effect.utils';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class Shopping extends Phaser.State {
 
@@ -42,6 +43,7 @@ export default class Shopping extends Phaser.State {
     private tipShowing: boolean = true;
     private animating: boolean = false;
     private completed: boolean = false;
+    private isDown: boolean = false;
     private assocArray = {};
     private itemsArray: string[];
     private fallingArray: Phaser.Sprite[];
@@ -54,7 +56,7 @@ export default class Shopping extends Phaser.State {
     private score: number = 0;
     private curStage: number = 0;
     private curTimeInSeconds: number = 0;
-    private gameDuration: number = 10; // TODO change!!!
+    private gameDuration: number = 30; // TODO change!!!
 
     public init(...args: any[]): void {
 	    this.gui = new InstantGui(this);
@@ -68,7 +70,9 @@ export default class Shopping extends Phaser.State {
 	    this.tipShowing = true;
 	    this.animating = true;
 	    this.completed = true;
+	    this.isDown = true;
 	    this.curStage = 1;
+	    SoundUtils.play('ShopTheme');
     }
 
     public preload(): void {
@@ -82,7 +86,7 @@ export default class Shopping extends Phaser.State {
 	    this.basketB = this.game.add.sprite(100, 709 + 400,
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.BasketB);
-	    this.basket = this.game.add.sprite(107, 711 + 400,
+	    this.basket = this.game.add.sprite(99, 705 + 400,
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
 		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.Basket);
 	    GuiUtils.centrize(this.basketB);
@@ -101,11 +105,11 @@ export default class Shopping extends Phaser.State {
 		    ]);
 	    
 	    this.panel = this.game.add.sprite(152, 0 - 300,
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.Panel);
+		    ImageUtils.getAtlasClass('AtlasesCommons').getName(),
+		    ImageUtils.getAtlasClass('AtlasesCommons').Frames.Panel);
 	    this.label = this.game.add.sprite(0, 0,
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').getName(),
-		    ImageUtils.getAtlasClass('AtlasesStateShopping').Frames['Score' + GameConfig.LOCALE]);
+		    ImageUtils.getAtlasClass('AtlasesCommons').getName(),
+		    ImageUtils.getAtlasClass('AtlasesCommons').Frames['Score' + GameConfig.LOCALE]);
 	    this.scoreText = this.game.add.bitmapText(
 	    	this.game.world.centerX, 70 - 300,
 		    ImageUtils.getBitmapFontClass('FontsFontBig').getName(),
@@ -147,14 +151,28 @@ export default class Shopping extends Phaser.State {
 	    this.addItem('no14', ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.N14);
 	    this.addItem('no15', ImageUtils.getAtlasClass('AtlasesStateShopping').Frames.N15);
 
+	    this.game.input.addMoveCallback((pointer, x, y) => {
+	    	if (this.basketBtn.inputEnabled && !this.tipShowing && !this.completed) {
+			    this.clickX = Math.round(this.game.input.x);
+			    if (this.clickX < 50) this.clickX = 50;
+			    else if (this.clickX > 490) this.clickX = 490;
+		    }
+	    }, this)
 	    this.basketBtn = this.game.add.graphics(0, 700);
 	    this.basketBtn.beginFill(0xffff00, 0);
 	    this.basketBtn.drawRect(0, 0, 540, 260);
 	    this.basketBtn.inputEnabled = true;
 	    this.basketBtn.events.onInputDown.add(() => {
-	    	this.clickX = Math.round(this.game.input.x);
+	    	/*this.clickX = Math.round(this.game.input.x);
 	    	if (this.clickX < 50) this.clickX = 50;
-	    	else if (this.clickX > 490) this.clickX = 490;
+	    	else if (this.clickX > 490) this.clickX = 490;*/
+	    	this.isDown = true;
+	    }, this);
+	    this.basketBtn.events.onInputUp.add(() => {
+		    /*this.clickX = Math.round(this.game.input.x);
+		     if (this.clickX < 50) this.clickX = 50;
+		     else if (this.clickX > 490) this.clickX = 490;*/
+		    this.isDown = false;
 	    }, this);
 	    this.basketBtn.inputEnabled = false;
 	
@@ -284,12 +302,12 @@ export default class Shopping extends Phaser.State {
 		    this.itemSpeed = 3;
 	    }
 	    else if (this.curStage === 2) {
-		    this.itemSpawn = 85;
-		    this.itemSpeed = 3.5;
-	    }
-	    else if (this.curStage === 3) {
 		    this.itemSpawn = 65;
 		    this.itemSpeed = 4;
+	    }
+	    else if (this.curStage === 3) {
+		    this.itemSpawn = 57;
+		    this.itemSpeed = 5;
 	    }
     	this.curItem = 0;
     	this.total = 0;
@@ -357,11 +375,8 @@ export default class Shopping extends Phaser.State {
     }
     
     private endLevel() {
-	    /*this.total++;
-	    if (this.total === 30) {
-		    this.completed = true;
-		    TweenUtils.fadeAndScaleIn(this.playBtn, Phaser.Timer.SECOND * .75);
-	    }*/
+	    if (SoundUtils.isSoundEnabled())
+		    SoundUtils.playFX('SubLevelDone');
 	    this.completed = true;
 	    let delay = .25;
 	    for (let i = 0; i < this.fallingArray.length; i++) {
@@ -433,8 +448,8 @@ export default class Shopping extends Phaser.State {
         	if (this.fallingArray.length !== 0) {
         		for (let i of this.fallingArray) {
         			i.y += this.itemSpeed;
-        			if (i.y > 780 && i.y < 850) {
-        				if ((i.x > this.basket.x - 80) && (i.x < this.basket.x + 80)) {
+        			if (i.y > 760 && i.y < 800) {
+        				if ((i.x > this.basket.x - 130) && (i.x < this.basket.x + 130)) {
         					for (let d = 0; d < this.fallingArray.length; d++) {
         						if (this.fallingArray[d] === i) {
         							this.fallingArray.splice(d, 1);
@@ -449,9 +464,13 @@ export default class Shopping extends Phaser.State {
 						        this.scoreText.setText(' ' + this.score + ' ');
 						        this.scoreText.updateText();
 						        this.scoreText.updateTransform();
+						        if (SoundUtils.isSoundEnabled())
+							        SoundUtils.playFX('Correct');
 					        }
 					        else {
-					        	this.basket.filters = [EffectUtils.makeGlowAnimation(0xff0000, 200, true, 2)];
+					        	this.basket.filters = [EffectUtils.makeGlowAnimation(0xee0000, 200, true, 2, 200)];
+						        if (SoundUtils.isSoundEnabled())
+							        SoundUtils.playFX('Wrong');
 					        }
 				        }
 			        }

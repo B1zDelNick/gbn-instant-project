@@ -10,6 +10,7 @@ import {EffectUtils} from '../utils/effect.utils';
 import {Chest} from './template/dress/chest';
 import {BlowParticles} from './spec-effects/particle/blow.particle';
 import {IParticle} from './spec-effects/particle/i.particle';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class SlackRivals extends Phaser.State {
 
@@ -72,7 +73,7 @@ export default class SlackRivals extends Phaser.State {
 	    this.failed = false;
 	    this.checking = false;
 	    this.curTime = 0;
-	    this.nextCheck = 30000;
+	    this.nextCheck = 300;
 	    this.curDr = 0;
 	    this.curSh = 0;
 	    this.curAc = 0;
@@ -381,6 +382,12 @@ export default class SlackRivals extends Phaser.State {
 			this.completed = true;
 			this.doll2.enableListeners();
 			this.doll2.getBody().filters = [EffectUtils.makeGlowAnimation(0xffff00)];
+			if (SoundUtils.isSoundEnabled())
+				SoundUtils.playFX('SubLevelDone');
+			TweenUtils.delayedCall(1000, () => {
+				if (SoundUtils.isSoundEnabled())
+					SoundUtils.playFX('Smile1');
+			}, this);
 		}
 	}
 	
@@ -455,7 +462,7 @@ export default class SlackRivals extends Phaser.State {
 
     public update(): void {
         super.update(this.game);
-        if (!this.tipShowing) {
+        if (!this.tipShowing && !this.completed) {
         	this.curTime++;
         	if (this.curTime === this.nextCheck) {
 		        TweenUtils.fadeAndScaleOut(this.hintBtn);
@@ -477,10 +484,18 @@ export default class SlackRivals extends Phaser.State {
     	TweenUtils.fadeOut(this.alisaBack);
     	TweenUtils.fadeIn(this.alisaFront, 500, 0, () => {
     	    if (this.panelIsShowing) {
+    	    	if (this.completed) {
+			        // this.onDown();
+			        TweenUtils.fadeOut(this.alisaFront, 500, 2000);
+			        TweenUtils.fadeIn(this.alisaBack, 500, 2000);
+			        return;
+		        }
 		        this.txt2.position.setTo(295, 461);
 		        this.txt2.alpha = 0;
     	    	this.failed = true;
     	    	this.onDown();
+		        if (SoundUtils.isSoundEnabled())
+			        SoundUtils.playFX('Ah2');
 		        this.game.add.tween(this.cloud2).to({ x: 103 }, Phaser.Timer.SECOND * 1.5, Phaser.Easing.Elastic.Out, true, Phaser.Timer.SECOND * 1);
 		        TweenUtils.fadeIn(this.txt2, Phaser.Timer.SECOND * .5, Phaser.Timer.SECOND * 2.5, () => {
 		        	this.game.add.tween(this.cloud2).to({ x: 103 + 540 }, Phaser.Timer.SECOND * 1, Phaser.Easing.Circular.In, true, Phaser.Timer.SECOND * 3);
@@ -490,6 +505,8 @@ export default class SlackRivals extends Phaser.State {
 				        TweenUtils.fadeOut(this.alisaFront, 500, 0);
 				        TweenUtils.fadeIn(this.alisaBack, 500, 0, () => {
 					        TweenUtils.slideIn(this.sadSophie, 4, 1000, 0, () => {
+						        if (SoundUtils.isSoundEnabled())
+							        SoundUtils.playFX('Sad1');
 						        TweenUtils.fadeAndScaleIn(this.againBtn, 750);
 					        }, this);
 				        }, this);

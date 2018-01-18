@@ -1,6 +1,7 @@
 import {FilterUtils} from './filter.utils';
 import {GameConfig} from '../config/game.config';
 import {isString} from 'util';
+import {SoundUtils} from './sound/sound.utils';
 
 export class GuiUtils {
 
@@ -21,7 +22,8 @@ export class GuiUtils {
         x: number, y: number, scale: number = 1,
         name: string = '', res: string = '', states: any|any[] = [0, 0, 0],
         enabled: boolean = true, perfect: boolean = false, visible: boolean = true,
-        clickHandler: Function = null, overHandler: Function = null, outHandler: Function = null, downHandler: Function = null, upHandler: Function = null): Phaser.Button {
+        clickHandler: Function = null, overHandler: Function = null, outHandler: Function = null, downHandler: Function = null, upHandler: Function = null,
+        sound: string = null): Phaser.Button {
 
         if (states == null) {
             states = [0, 0, 0];
@@ -55,6 +57,10 @@ export class GuiUtils {
             tempItem.events.onInputDown.add(downHandler, parent);
         if (upHandler != null)
             tempItem.events.onInputUp.add(upHandler, parent);
+	    tempItem.events.onInputDown.add(() => {
+	    	if (SoundUtils.isSoundEnabled())
+	    	    SoundUtils.playFX(sound === null ? 'Click' : sound);
+	    });
 
         if (scale)
             tempItem.scale.setTo(scale);

@@ -13,7 +13,7 @@ import {ViralUtils} from '../utils/viral/viral.utils';
 
 export default class DietDecor extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'END';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -65,62 +65,62 @@ export default class DietDecor extends Phaser.State {
 	    this.decor = new DecorBackground(540)
 		    // .sprite(0, 0, ImageUtils.getImageClass('ImagesBg9').getName())
 		    .layer('sub', false)
-			    .activeItem(344, 706,
+			    .item(344, 706,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Three)
-			    .activeItem(216, 645,
+			    .item(216, 645,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Sub1)
-			    .activeItem(0, 512,
+			    .item(0, 512,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Sub2)
-			    .activeItem(243, 593,
+			    .item(243, 593,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Sub3)
-			    .activeItem(213, 591,
+			    .item(213, 591,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Sub4)
-			    .activeItem(162, 740,
+			    .item(162, 740,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Sub5)
 		    .build()
 		    .layer('cup', false)
-			    .activeItem(341, 91,
+			    .item(341, 91,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.One)
-			    .activeItem(192, 43,
+			    .item(192, 43,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Cup1)
-			    .activeItem(240, 37,
+			    .item(240, 37,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Cup2)
-			    .activeItem(172, 0,
+			    .item(172, 0,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Cup3)
-			    .activeItem(0, 0,
+			    .item(0, 0,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Cup4)
-			    .activeItem(222, 0,
+			    .item(222, 0,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Cup5)
 		    .build()
 		    .layer('food', false)
-			    .activeItem(107, 420,
+			    .item(107, 420,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Two)
-			    .activeItem(0, 303,
+			    .item(0, 303,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Food1)
-			    .activeItem(0, 244,
+			    .item(0, 244,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Food2)
-			    .activeItem(0, 238,
+			    .item(0, 238,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Food3)
-			    .activeItem(0, 280,
+			    .item(0, 280,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Food4)
-			    .activeItem(0, 298,
+			    .item(0, 298,
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').getName(),
 				    ImageUtils.getAtlasClass('AtlasesStateDietDecor').Frames.Food5)
 		    .build();
@@ -208,6 +208,13 @@ export default class DietDecor extends Phaser.State {
 	    this.txt2.alpha = 0;
 	
 	    this.viral = ViralUtils.addShareWindow();
+	    this.viral.setListeners(() => {
+		    this.viral.hide();
+		    // unbluring stage
+		    TweenUtils.delayedCall(500, () => {
+			    EffectUtils.makeBlurAnimation(this.container, 0, 1500, false, 0);
+		    }, this);
+	    }, this);
 	    
         // GUI Buttons
 	    this.gui.addGui();
@@ -241,6 +248,15 @@ export default class DietDecor extends Phaser.State {
 	    this.closeBtn.scale.setTo(0);
 	    this.playBtn = this.gui.addPlayBtn(GuiButtons.DONE, () => {
 		    TweenUtils.fadeAndScaleOut(this.playBtn);
+		    if (this.decor.getIndex('cup') === 0) {
+		    	this.decor.getByIndex('cup', 0).visible = false;
+		    }
+		    if (this.decor.getIndex('food') === 0) {
+			    this.decor.getByIndex('food', 0).visible = false;
+		    }
+		    if (this.decor.getIndex('sub') === 0) {
+			    this.decor.getByIndex('sub', 0).visible = false;
+		    }
 		    TweenUtils.fadeAndScaleOut(this.cupBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * .75);
 		    TweenUtils.fadeAndScaleOut(this.foodBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1);
 		    TweenUtils.fadeAndScaleOut(this.subBtn, Phaser.Timer.SECOND * .75, Phaser.Timer.SECOND * 1.25);

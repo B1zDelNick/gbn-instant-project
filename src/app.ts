@@ -18,6 +18,8 @@ import ComixRivals from './states/comix_rivals';
 import HiddenRivals from './states/hidden_rivals';
 import SlackRivals from './states/slack_rivals';
 import RunawayRivals from './states/runaway_rivals';
+import Photoshoot from './states/photoshoot';
+import Flirting from './states/flirting';
 
 class App extends Phaser.Game {
     constructor(config: Phaser.IGameConfig) {
@@ -38,6 +40,8 @@ class App extends Phaser.Game {
         this.state.add('HiddenRivals', HiddenRivals);
         this.state.add('SlackRivals', SlackRivals);
         this.state.add('RunawayRivals', RunawayRivals);
+        this.state.add('Photoshoot', Photoshoot);
+        this.state.add('Flirting', Flirting);
 
         this.state.start('Boot');
     }

@@ -2,6 +2,7 @@ import {GameConfig} from '../../../config/game.config';
 import {DecorBackground} from './decor.background';
 import {TweenUtils} from '../../../utils/tween.utils';
 import {isUndefined} from 'util';
+import {EffectUtils} from '../../../utils/effect.utils';
 
 export class DecorLayer {
 
@@ -35,10 +36,23 @@ export class DecorLayer {
 		temp.events.onInputUp.add(this.next, this);
 		return this;
 	}
+	
+	activeItemGlowing(x: number, y: number, color: number, asset: string, frame?: any): DecorLayer {
+		const temp = this.game.add.sprite(x, y, asset, frame, this.container)
+		this.sprites.push(temp);
+		temp.inputEnabled = true;
+		temp.input.pixelPerfectClick = temp.input.pixelPerfectOver = true;
+		temp.input.pixelPerfectAlpha = 10;
+		temp.input.useHandCursor = true;
+		temp.events.onInputUp.add(this.next, this);
+		temp.filters = [EffectUtils.makeGlowAnimation(color, 400)];
+		return this;
+	}
 
     next(): void {
         if (!isUndefined(this.sprites[this.current])) { // (this.current !== this.sprites.length - this.emptySlotModifier) {
-            this.game.tweens.removeFrom(this.sprites[this.current]);
+	        this.sprites[this.current].filters = null;
+	        this.game.tweens.removeFrom(this.sprites[this.current]);
             TweenUtils.fadeOut(this.sprites[this.current]);
         }
 

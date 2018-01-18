@@ -3,6 +3,7 @@ import {GuiUtils} from '../../../utils/gui.utils';
 import {ImageUtils} from '../../../utils/images/image.utils';
 import {TweenUtils} from '../../../utils/tween.utils';
 import {EffectUtils} from '../../../utils/effect.utils';
+import {SoundUtils} from '../../../utils/sound/sound.utils';
 
 export class MatchCard {
 	
@@ -32,7 +33,8 @@ export class MatchCard {
 			true, true, true,
 			this.onClick,
 			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addCustomOverHandler(0xff66cc, 1.05) : null,
-			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandler : null
+			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandler : null, null, null,
+			'CardFlip'
 		);
 		this.button.scale.setTo(0);
 		this.button.alpha = 0;
@@ -84,6 +86,8 @@ export class MatchCard {
 		this.isDone = true;
 		this.sprite.filters = [EffectUtils.makeLightGlowAnimation(0x00ff00, 250, true, 1)];
 		TweenUtils.fadeAndScaleOut(this.sprite, 500, 1000);
+		if (SoundUtils.isSoundEnabled())
+			SoundUtils.playFX('CardDone');
 	}
 	
 	public isCompleted(): boolean {

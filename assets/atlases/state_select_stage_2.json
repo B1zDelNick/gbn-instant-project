@@ -1,0 +1,30 @@
+{"frames": [
+
+{
+	"filename": "bg4.jpg",
+	"frame": {"x":1,"y":1,"w":540,"h":960},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":541,"h":961},
+	"sourceSize": {"w":540,"h":960},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "lamps.png",
+	"frame": {"x":0,"y":962,"w":540,"h":119},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":540,"h":119},
+	"sourceSize": {"w":540,"h":119},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "state_select_stage_2.png",
+	"format": "RGBA8888",
+	"size": {"w":1081,"h":1081},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3ff7c58e82f44127ea1b0e886a4d98f8:5d32dc808fa56b12386fad1e05a4ba42:34692c166879f2a0d50689993bc9d3d8$"
+}
+}

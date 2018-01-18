@@ -37,7 +37,7 @@ export class ChestItem extends ChestItemBase {
                 this.state, container,
                 x, y, 1,
                 name, asset, frames,
-                true, true, visible, callback, overHandler, outHandler);
+                true, true, visible, callback, overHandler, outHandler, null, null, 'ItemChange');
     }
 
     disable(): void {

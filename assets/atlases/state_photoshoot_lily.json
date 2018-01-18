@@ -1,0 +1,102 @@
+{"frames": [
+
+{
+	"filename": "pose_1.png",
+	"frame": {"x":782,"y":0,"w":268,"h":882},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":268,"h":882},
+	"sourceSize": {"w":268,"h":882},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_2.png",
+	"frame": {"x":257,"y":0,"w":257,"h":872},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":257,"h":872},
+	"sourceSize": {"w":257,"h":872},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_3.png",
+	"frame": {"x":1329,"y":0,"w":279,"h":881},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":279,"h":881},
+	"sourceSize": {"w":279,"h":881},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_4.png",
+	"frame": {"x":326,"y":882,"w":326,"h":875},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":326,"h":875},
+	"sourceSize": {"w":326,"h":875},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_5.png",
+	"frame": {"x":1144,"y":882,"w":492,"h":652},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":492,"h":652},
+	"sourceSize": {"w":492,"h":652},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sil_1.png",
+	"frame": {"x":514,"y":0,"w":268,"h":882},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":268,"h":882},
+	"sourceSize": {"w":268,"h":882},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sil_2.png",
+	"frame": {"x":0,"y":0,"w":257,"h":872},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":257,"h":872},
+	"sourceSize": {"w":257,"h":872},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sil_3.png",
+	"frame": {"x":1050,"y":0,"w":279,"h":881},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":279,"h":881},
+	"sourceSize": {"w":279,"h":881},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sil_4.png",
+	"frame": {"x":0,"y":882,"w":326,"h":875},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":326,"h":875},
+	"sourceSize": {"w":326,"h":875},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "sil_5.png",
+	"frame": {"x":652,"y":882,"w":492,"h":652},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":492,"h":652},
+	"sourceSize": {"w":492,"h":652},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "state_photoshoot_lily.png",
+	"format": "RGBA8888",
+	"size": {"w":1636,"h":1757},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f1ba5396d3d8d1a20756f0d5f0a0168a:384c104d75dfb8bf54b6fabfa159262e:28dbfd1a0b56cd54c1db1f35864c5bf6$"
+}
+}

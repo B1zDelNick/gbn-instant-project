@@ -7,10 +7,11 @@ import {GuiButtons} from './gui/enum.gui';
 import {GuiUtils} from '../utils/gui.utils';
 import {Doll} from './template/dress/doll';
 import {EffectUtils} from '../utils/effect.utils';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class ComixRivals extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'HiddenRivals';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -30,6 +31,7 @@ export default class ComixRivals extends Phaser.State {
 
     public init(...args: any[]): void {
 	    this.gui = new InstantGui(this);
+	    SoundUtils.play('RivalsTheme');
     }
 
     public preload(): void {
@@ -131,8 +133,12 @@ export default class ComixRivals extends Phaser.State {
 	    TweenUtils.moveAndRotate(this.coff, 238, 721, 86, 500, 3000, () => {
 	    	TweenUtils.fadeIn(this.spot);
 	    	TweenUtils.fadeIn(this.sophia.getLayerSprite('spot'));
+		    if (SoundUtils.isSoundEnabled())
+			    SoundUtils.playFX('Ah1');
 	    	TweenUtils.fadeIn(this.sophia.getLayerSprite('sad'), 500, 0, () => {
 			    TweenUtils.fadeIn(this.alisa.getLayerSprite('smile'), 500, 0, () => {
+				    if (SoundUtils.isSoundEnabled())
+					    SoundUtils.playFX('Smile2');
 				    this.alisa.getLayerSprite('head').visible = false;
 			    	EffectUtils.makeMoveAnimation(
 			    		this.alisa.getLayerSprite('smile'),

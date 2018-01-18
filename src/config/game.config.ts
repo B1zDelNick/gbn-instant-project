@@ -31,6 +31,8 @@ export class GameConfig {
 
     public static SELECTED_BG: number = 0;
     public static SELECTED_ACTOR: number = 0;
+    public static SELECTED_STAGE: number = 0;
+    public static PROGRESS: number = 0;
 
     private static _inited: boolean = false;
     private static _gameId: string;

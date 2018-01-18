@@ -20,6 +20,7 @@ export default class Start extends Phaser.State {
     private bg: Phaser.Sprite = null;
     private laser: ILaser = null;
     private title: Phaser.Sprite = null;
+    private copyrights: Phaser.Sprite = null;
     private fl1: Phaser.Sprite = null;
     private fl2: Phaser.Sprite = null;
     private fl3: Phaser.Sprite = null;
@@ -91,12 +92,23 @@ export default class Start extends Phaser.State {
         GuiUtils.centrize(this.title);
         this.title.alpha = 0;
         this.title.scale.setTo(0);
-
+	
+	    this.copyrights = this.game.add.sprite(20, 80 - 500,
+		    ImageUtils.getAtlasClass('AtlasesStateStart').getName(),
+		    ImageUtils.getAtlasClass('AtlasesStateStart').Frames.Copyrights);
+        
         // GUI Buttons
-        this.gui.addGui();
-        this.gui.addPhotoBtn(null);
-        this.gui.addCopyrightBtn(null);
-        this.gui.addHintBtn(null);
+        this.gui.addGui(false);
+        const cop = this.gui.addCopyrightBtn(() => {
+        	if (this.copyrights.y < 0) {
+        		TweenUtils.rotate(cop, 360 * 3 + 180, 500);
+        		TweenUtils.moveIn(this.copyrights, 20, 80, 1000);
+	        }
+	        else {
+		        TweenUtils.rotate(cop, 360 * 3, 500);
+        		TweenUtils.moveOut(this.copyrights, 20, 8 - 500, 1000);
+	        }
+        });
         const playBtn = this.gui.addPlayBtn(GuiButtons.START, this.nextState, 199, 819);
         playBtn.alpha = 0;
         playBtn.scale.setTo(0);

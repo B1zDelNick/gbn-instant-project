@@ -1,8 +1,17 @@
 {"frames": [
 
 {
+	"filename": "copyrights.png",
+	"frame": {"x":263,"y":0,"w":500,"h":278},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":500,"h":278},
+	"sourceSize": {"w":500,"h":278},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "flash_1.png",
-	"frame": {"x":0,"y":240,"w":299,"h":299},
+	"frame": {"x":0,"y":278,"w":299,"h":299},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":299,"h":299},
@@ -26,14 +35,32 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":162,"h":240},
 	"sourceSize": {"w":162,"h":240},
 	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "title_en.png",
+	"frame": {"x":299,"y":278,"w":537,"h":361},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":537,"h":361},
+	"sourceSize": {"w":537,"h":361},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "title_ru.png",
+	"frame": {"x":0,"y":639,"w":537,"h":361},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":537,"h":361},
+	"sourceSize": {"w":537,"h":361},
+	"pivot": {"x":0.5,"y":0.5}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "state_start.png",
 	"format": "RGBA8888",
-	"size": {"w":299,"h":539},
+	"size": {"w":836,"h":1000},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:6440a04777737aa8d6c4bdfc5d9c0b39:3df19f4f023d4d31baa9a0d7578b85ac:71a2591e904cd80377f4aacc094ff22d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:9314ff3ed4375c59ab66fd95604ced4c:15f48a3d50c85882e1e60f7c0eca79de:71a2591e904cd80377f4aacc094ff22d$"
 }
 }

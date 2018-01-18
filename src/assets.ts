@@ -31,6 +31,11 @@ export namespace Images {
 
         static getJPG(): string { return require('assets/images/bg13.jpg'); }
     }
+    export class ImagesBg14 {
+        static getName(): string { return 'bg14'; }
+
+        static getJPG(): string { return require('assets/images/bg14.jpg'); }
+    }
     export class ImagesBg2 {
         static getName(): string { return 'bg2'; }
 
@@ -93,6 +98,20 @@ export namespace Spritesheets {
 }
 
 export namespace Atlases {
+    enum AtlasesCommonsFrames {
+        Panel = <any>'panel.png',
+        ScoreEn = <any>'score_en.png',
+        ScoreRu = <any>'score_ru.png',
+    }
+    export class AtlasesCommons {
+        static getName(): string { return 'commons'; }
+
+        static getJSONArray(): string { return require('assets/atlases/commons.json'); }
+
+        static getPNG(): string { return require('assets/atlases/commons.png'); }
+
+        static Frames = AtlasesCommonsFrames;
+    }
     enum AtlasesDollAlisaRivalsFrames {
         Body = <any>'body.png',
         H = <any>'h_0.png',
@@ -186,6 +205,184 @@ export namespace Atlases {
         static getPNG(): string { return require('assets/atlases/doll_angela_shopping.png'); }
 
         static Frames = AtlasesDollAngelaShoppingFrames;
+    }
+    enum AtlasesDollChallFlirtingAngelaFrames {
+        Body = <any>'body.png',
+        HandB = <any>'hand_b.png',
+        HandF = <any>'hand_f.png',
+        Head = <any>'head.png',
+        Kiss = <any>'kiss.png',
+        Leg = <any>'leg.png',
+        Lip = <any>'lip.png',
+    }
+    export class AtlasesDollChallFlirtingAngela {
+        static getName(): string { return 'doll_chall_flirting_angela'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_angela.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_angela.png'); }
+
+        static Frames = AtlasesDollChallFlirtingAngelaFrames;
+    }
+    enum AtlasesDollChallFlirtingEmilyFrames {
+        Body = <any>'body.png',
+        HandB = <any>'hand_b.png',
+        HandF = <any>'hand_f.png',
+        Head = <any>'head.png',
+        Kiss = <any>'kiss.png',
+        Leg = <any>'leg.png',
+        Lip = <any>'lip.png',
+    }
+    export class AtlasesDollChallFlirtingEmily {
+        static getName(): string { return 'doll_chall_flirting_emily'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_emily.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_emily.png'); }
+
+        static Frames = AtlasesDollChallFlirtingEmilyFrames;
+    }
+    enum AtlasesDollChallFlirtingLilyFrames {
+        Body = <any>'body.png',
+        HB = <any>'h_b.png',
+        HandB = <any>'hand_b.png',
+        HandF = <any>'hand_f.png',
+        Head = <any>'head.png',
+        Kiss = <any>'kiss.png',
+        Leg = <any>'leg.png',
+        Lip = <any>'lip.png',
+    }
+    export class AtlasesDollChallFlirtingLily {
+        static getName(): string { return 'doll_chall_flirting_lily'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_lily.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_lily.png'); }
+
+        static Frames = AtlasesDollChallFlirtingLilyFrames;
+    }
+    enum AtlasesDollChallFlirtingMan1Frames {
+        Body = <any>'body.png',
+        Ee1 = <any>'ee_1.png',
+        Ee2 = <any>'ee_2.png',
+        Ee3 = <any>'ee_3.png',
+        H = <any>'h.png',
+        Hl = <any>'hl.png',
+        Hr = <any>'hr.png',
+        Lp1 = <any>'lp_1.png',
+        Lp2 = <any>'lp_2.png',
+        Sad = <any>'sad.png',
+    }
+    export class AtlasesDollChallFlirtingMan1 {
+        static getName(): string { return 'doll_chall_flirting_man_1'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_man_1.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_man_1.png'); }
+
+        static Frames = AtlasesDollChallFlirtingMan1Frames;
+    }
+    enum AtlasesDollChallFlirtingMan2Frames {
+        Body = <any>'body.png',
+        Ee1 = <any>'ee_1.png',
+        Ee2 = <any>'ee_2.png',
+        Ee3 = <any>'ee_3.png',
+        Gs = <any>'gs.png',
+        H = <any>'h.png',
+        Hl = <any>'hl.png',
+        Hr = <any>'hr.png',
+        Lp1 = <any>'lp_1.png',
+        Lp2 = <any>'lp_2.png',
+        Sad = <any>'sad.png',
+    }
+    export class AtlasesDollChallFlirtingMan2 {
+        static getName(): string { return 'doll_chall_flirting_man_2'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_man_2.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_man_2.png'); }
+
+        static Frames = AtlasesDollChallFlirtingMan2Frames;
+    }
+    enum AtlasesDollChallFlirtingMan3Frames {
+        Body = <any>'body.png',
+        Ee1 = <any>'ee_1.png',
+        Ee2 = <any>'ee_2.png',
+        Ee3 = <any>'ee_3.png',
+        Gs = <any>'gs.png',
+        H = <any>'h.png',
+        Hl = <any>'hl.png',
+        Hr = <any>'hr.png',
+        Lp1 = <any>'lp_1.png',
+        Lp2 = <any>'lp_2.png',
+        Sad = <any>'sad.png',
+    }
+    export class AtlasesDollChallFlirtingMan3 {
+        static getName(): string { return 'doll_chall_flirting_man_3'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_man_3.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_man_3.png'); }
+
+        static Frames = AtlasesDollChallFlirtingMan3Frames;
+    }
+    enum AtlasesDollChallFlirtingMan4Frames {
+        Body = <any>'body.png',
+        Ee1 = <any>'ee_1.png',
+        Ee2 = <any>'ee_2.png',
+        Ee3 = <any>'ee_3.png',
+        H = <any>'h.png',
+        Hl = <any>'hl.png',
+        Hr = <any>'hr.png',
+        Lp1 = <any>'lp_1.png',
+        Lp2 = <any>'lp_2.png',
+        Sad = <any>'sad.png',
+    }
+    export class AtlasesDollChallFlirtingMan4 {
+        static getName(): string { return 'doll_chall_flirting_man_4'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_man_4.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_man_4.png'); }
+
+        static Frames = AtlasesDollChallFlirtingMan4Frames;
+    }
+    enum AtlasesDollChallFlirtingMonicaFrames {
+        Body = <any>'body.png',
+        HB = <any>'h_b.png',
+        HandB = <any>'hand_b.png',
+        HandF = <any>'hand_f.png',
+        Head = <any>'head.png',
+        Kiss = <any>'kiss.png',
+        Leg = <any>'leg.png',
+        Lip = <any>'lip.png',
+    }
+    export class AtlasesDollChallFlirtingMonica {
+        static getName(): string { return 'doll_chall_flirting_monica'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_monica.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_monica.png'); }
+
+        static Frames = AtlasesDollChallFlirtingMonicaFrames;
+    }
+    enum AtlasesDollChallFlirtingOliviaFrames {
+        Body = <any>'body.png',
+        HandB = <any>'hand_b.png',
+        HandF = <any>'hand_f.png',
+        Head = <any>'head.png',
+        Kiss = <any>'kiss.png',
+        Leg = <any>'leg.png',
+        Lip = <any>'lip.png',
+    }
+    export class AtlasesDollChallFlirtingOlivia {
+        static getName(): string { return 'doll_chall_flirting_olivia'; }
+
+        static getJSONArray(): string { return require('assets/atlases/doll_chall_flirting_olivia.json'); }
+
+        static getPNG(): string { return require('assets/atlases/doll_chall_flirting_olivia.png'); }
+
+        static Frames = AtlasesDollChallFlirtingOliviaFrames;
     }
     enum AtlasesDollCommonShoppingFrames {
         Bb1 = <any>'bb_1.png',
@@ -727,6 +924,169 @@ export namespace Atlases {
 
         static Frames = AtlasesStateDressShoppingFrames;
     }
+    enum AtlasesStateFlirtingFrames {
+        BarBar1 = <any>'bar_bar_1.png',
+        BarBar2 = <any>'bar_bar_2.png',
+        BarBase1 = <any>'bar_base_1.png',
+        BarBase2 = <any>'bar_base_2.png',
+        Bg15 = <any>'bg15.jpg',
+        Cloud = <any>'cloud.png',
+        Hrt1 = <any>'hrt_1.png',
+        Hrt2 = <any>'hrt_2.png',
+        LabelEn = <any>'label_en.png',
+        LabelRu = <any>'label_ru.png',
+        Score = <any>'score.png',
+        Sel1 = <any>'sel_1.png',
+        Sel2 = <any>'sel_2.png',
+        Sel3 = <any>'sel_3.png',
+        Sel4 = <any>'sel_4.png',
+        Sparks = <any>'sparks.png',
+        TxtRu = <any>'txt_ru.png',
+        TxtEn = <any>'txt_en.png',
+    }
+    export class AtlasesStateFlirting {
+        static getName(): string { return 'state_flirting'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_flirting.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_flirting.png'); }
+
+        static Frames = AtlasesStateFlirtingFrames;
+    }
+    enum AtlasesStatePhotoshootAngelaFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+        Sil1 = <any>'sil_1.png',
+        Sil2 = <any>'sil_2.png',
+        Sil3 = <any>'sil_3.png',
+        Sil4 = <any>'sil_4.png',
+        Sil5 = <any>'sil_5.png',
+    }
+    export class AtlasesStatePhotoshootAngela {
+        static getName(): string { return 'state_photoshoot_angela'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_angela.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_angela.png'); }
+
+        static Frames = AtlasesStatePhotoshootAngelaFrames;
+    }
+    enum AtlasesStatePhotoshootChloeFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+    }
+    export class AtlasesStatePhotoshootChloe {
+        static getName(): string { return 'state_photoshoot_chloe'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_chloe.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_chloe.png'); }
+
+        static Frames = AtlasesStatePhotoshootChloeFrames;
+    }
+    enum AtlasesStatePhotoshootEmilyFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+        Sil1 = <any>'sil_1.png',
+        Sil2 = <any>'sil_2.png',
+        Sil3 = <any>'sil_3.png',
+        Sil4 = <any>'sil_4.png',
+        Sil5 = <any>'sil_5.png',
+    }
+    export class AtlasesStatePhotoshootEmily {
+        static getName(): string { return 'state_photoshoot_emily'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_emily.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_emily.png'); }
+
+        static Frames = AtlasesStatePhotoshootEmilyFrames;
+    }
+    enum AtlasesStatePhotoshootLilyFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+        Sil1 = <any>'sil_1.png',
+        Sil2 = <any>'sil_2.png',
+        Sil3 = <any>'sil_3.png',
+        Sil4 = <any>'sil_4.png',
+        Sil5 = <any>'sil_5.png',
+    }
+    export class AtlasesStatePhotoshootLily {
+        static getName(): string { return 'state_photoshoot_lily'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_lily.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_lily.png'); }
+
+        static Frames = AtlasesStatePhotoshootLilyFrames;
+    }
+    enum AtlasesStatePhotoshootMonicaFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+        Sil1 = <any>'sil_1.png',
+        Sil2 = <any>'sil_2.png',
+        Sil3 = <any>'sil_3.png',
+        Sil4 = <any>'sil_4.png',
+        Sil5 = <any>'sil_5.png',
+    }
+    export class AtlasesStatePhotoshootMonica {
+        static getName(): string { return 'state_photoshoot_monica'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_monica.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_monica.png'); }
+
+        static Frames = AtlasesStatePhotoshootMonicaFrames;
+    }
+    enum AtlasesStatePhotoshootSophieFrames {
+        Pose1 = <any>'pose_1.png',
+        Pose2 = <any>'pose_2.png',
+        Pose3 = <any>'pose_3.png',
+        Pose4 = <any>'pose_4.png',
+        Pose5 = <any>'pose_5.png',
+    }
+    export class AtlasesStatePhotoshootSophie {
+        static getName(): string { return 'state_photoshoot_sophie'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot_sophie.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot_sophie.png'); }
+
+        static Frames = AtlasesStatePhotoshootSophieFrames;
+    }
+    enum AtlasesStatePhotoshootFrames {
+        Cloud = <any>'cloud.png',
+        Green = <any>'green.png',
+        Red = <any>'red.png',
+        Txt1En = <any>'txt_1_en.png',
+        Txt1Ru = <any>'txt_1_ru.png',
+        Txt2En = <any>'txt_2_en.png',
+        Txt2Ru = <any>'txt_2_ru.png',
+    }
+    export class AtlasesStatePhotoshoot {
+        static getName(): string { return 'state_photoshoot'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_photoshoot.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_photoshoot.png'); }
+
+        static Frames = AtlasesStatePhotoshootFrames;
+    }
     enum AtlasesStatePrerollFrames {
         Progressbar1 = <any>'progressbar_1.png',
         Progressbar2 = <any>'progressbar_2.png',
@@ -787,6 +1147,16 @@ export namespace Atlases {
         Item9 = <any>'item_9.png',
         Item10 = <any>'item_10.png',
         Item11 = <any>'item_11.png',
+        L1 = <any>'l_1.png',
+        L2 = <any>'l_2.png',
+        L3 = <any>'l_3.png',
+        L4 = <any>'l_4.png',
+        L5 = <any>'l_5.png',
+        L6 = <any>'l_6.png',
+        L7 = <any>'l_7.png',
+        L8 = <any>'l_8.png',
+        L9 = <any>'l_9.png',
+        L10 = <any>'l_10.png',
         TxtEn = <any>'txt_en.png',
         TxtRu = <any>'txt_ru.png',
     }
@@ -831,6 +1201,55 @@ export namespace Atlases {
 
         static Frames = AtlasesStateRivalsSlackingFrames;
     }
+    enum AtlasesStateSelectStage2Frames {
+        Bg4 = <any>'bg4.jpg',
+        Lamps = <any>'lamps.png',
+    }
+    export class AtlasesStateSelectStage2 {
+        static getName(): string { return 'state_select_stage_2'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_select_stage_2.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_select_stage_2.png'); }
+
+        static Frames = AtlasesStateSelectStage2Frames;
+    }
+    enum AtlasesStateSelectStageFrames {
+        Leg = <any>'leg.png',
+        Legs = <any>'legs.png',
+        Level1En = <any>'level_1_en.png',
+        Level1Ru = <any>'level_1_ru.png',
+        Level2En = <any>'level_2_en.png',
+        Level2Ru = <any>'level_2_ru.png',
+        Level3En = <any>'level_3_en.png',
+        Level3Ru = <any>'level_3_ru.png',
+        Level4En = <any>'level_4_en.png',
+        Level4Ru = <any>'level_4_ru.png',
+        Level5En = <any>'level_5_en.png',
+        Level5Ru = <any>'level_5_ru.png',
+        Level6En = <any>'level_6_en.png',
+        Level6Ru = <any>'level_6_ru.png',
+        Light = <any>'light.png',
+        N1 = <any>'n_1.png',
+        N2 = <any>'n_2.png',
+        N3 = <any>'n_3.png',
+        N4 = <any>'n_4.png',
+        N5 = <any>'n_5.png',
+        N6 = <any>'n_6.png',
+        OffEn = <any>'off_en.png',
+        OffRu = <any>'off_ru.png',
+        Shadow = <any>'shadow.png',
+        Stars = <any>'stars.png',
+    }
+    export class AtlasesStateSelectStage {
+        static getName(): string { return 'state_select_stage'; }
+
+        static getJSONArray(): string { return require('assets/atlases/state_select_stage.json'); }
+
+        static getPNG(): string { return require('assets/atlases/state_select_stage.png'); }
+
+        static Frames = AtlasesStateSelectStageFrames;
+    }
     enum AtlasesStateSelectFrames {
         LabelEn = <any>'label_en.png',
         LabelRu = <any>'label_ru.png',
@@ -872,9 +1291,6 @@ export namespace Atlases {
         N13 = <any>'n_13.png',
         N14 = <any>'n_14.png',
         N15 = <any>'n_15.png',
-        Panel = <any>'panel.png',
-        ScoreEn = <any>'score_en.png',
-        ScoreRu = <any>'score_ru.png',
         TxtEn = <any>'txt_en.png',
         TxtRu = <any>'txt_ru.png',
         Y1 = <any>'y_1.png',
@@ -927,9 +1343,12 @@ export namespace Atlases {
         static Frames = AtlasesStateStartComixFrames;
     }
     enum AtlasesStateStartFrames {
+        Copyrights = <any>'copyrights.png',
         Flash1 = <any>'flash_1.png',
         Flash2 = <any>'flash_2.png',
         Flash3 = <any>'flash_3.png',
+        TitleEn = <any>'title_en.png',
+        TitleRu = <any>'title_ru.png',
     }
     export class AtlasesStateStart {
         static getName(): string { return 'state_start'; }
@@ -961,7 +1380,106 @@ export namespace Atlases {
 }
 
 export namespace Audio {
-    class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}
+    export class AudioAh1 {
+        static getName(): string { return 'ah_1'; }
+
+        static getMP3(): string { return require('assets/audio/ah_1.mp3'); }
+    }
+    export class AudioAh2 {
+        static getName(): string { return 'ah_2'; }
+
+        static getMP3(): string { return require('assets/audio/ah_2.mp3'); }
+    }
+    export class AudioCardDone {
+        static getName(): string { return 'card_done'; }
+
+        static getMP3(): string { return require('assets/audio/card_done.mp3'); }
+    }
+    export class AudioCardFlip {
+        static getName(): string { return 'card_flip'; }
+
+        static getMP3(): string { return require('assets/audio/card_flip.mp3'); }
+    }
+    export class AudioClick {
+        static getName(): string { return 'click'; }
+
+        static getMP3(): string { return require('assets/audio/click.mp3'); }
+    }
+    export class AudioCorrect2 {
+        static getName(): string { return 'correct_2'; }
+
+        static getMP3(): string { return require('assets/audio/correct_2.mp3'); }
+    }
+    export class AudioCorrect {
+        static getName(): string { return 'correct'; }
+
+        static getMP3(): string { return require('assets/audio/correct.mp3'); }
+    }
+    export class AudioDietTheme {
+        static getName(): string { return 'diet_theme'; }
+
+        static getMP3(): string { return require('assets/audio/diet_theme.mp3'); }
+    }
+    export class AudioItemChange {
+        static getName(): string { return 'item_change'; }
+
+        static getMP3(): string { return require('assets/audio/item_change.mp3'); }
+    }
+    export class AudioLevelDone {
+        static getName(): string { return 'level_done'; }
+
+        static getMP3(): string { return require('assets/audio/level_done.mp3'); }
+    }
+    export class AudioMainTheme {
+        static getName(): string { return 'main_theme'; }
+
+        static getMP3(): string { return require('assets/audio/main_theme.mp3'); }
+    }
+    export class AudioPhotoTheme {
+        static getName(): string { return 'photo_theme'; }
+
+        static getMP3(): string { return require('assets/audio/photo_theme.mp3'); }
+    }
+    export class AudioRivalsTheme {
+        static getName(): string { return 'rivals_theme'; }
+
+        static getMP3(): string { return require('assets/audio/rivals_theme.mp3'); }
+    }
+    export class AudioSad1 {
+        static getName(): string { return 'sad_1'; }
+
+        static getMP3(): string { return require('assets/audio/sad_1.mp3'); }
+    }
+    export class AudioShoot {
+        static getName(): string { return 'shoot'; }
+
+        static getMP3(): string { return require('assets/audio/shoot.mp3'); }
+    }
+    export class AudioShopTheme {
+        static getName(): string { return 'shop_theme'; }
+
+        static getMP3(): string { return require('assets/audio/shop_theme.mp3'); }
+    }
+    export class AudioSmile1 {
+        static getName(): string { return 'smile_1'; }
+
+        static getMP3(): string { return require('assets/audio/smile_1.mp3'); }
+    }
+    export class AudioSmile2 {
+        static getName(): string { return 'smile_2'; }
+
+        static getMP3(): string { return require('assets/audio/smile_2.mp3'); }
+    }
+    export class AudioSubLevelDone {
+        static getName(): string { return 'sub_level_done'; }
+
+        static getMP3(): string { return require('assets/audio/sub_level_done.mp3'); }
+    }
+    export class AudioWrong {
+        static getName(): string { return 'wrong'; }
+
+        static getMP3(): string { return require('assets/audio/wrong.mp3'); }
+    }
 }
 
 export namespace Audiosprites {

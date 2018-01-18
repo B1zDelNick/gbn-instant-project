@@ -1,0 +1,57 @@
+{"frames": [
+
+{
+	"filename": "pose_1.png",
+	"frame": {"x":0,"y":0,"w":211,"h":687},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":211,"h":687},
+	"sourceSize": {"w":211,"h":687},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_2.png",
+	"frame": {"x":211,"y":0,"w":221,"h":682},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":221,"h":682},
+	"sourceSize": {"w":221,"h":682},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_3.png",
+	"frame": {"x":0,"y":687,"w":202,"h":677},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":202,"h":677},
+	"sourceSize": {"w":202,"h":677},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_4.png",
+	"frame": {"x":202,"y":687,"w":256,"h":681},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":681},
+	"sourceSize": {"w":256,"h":681},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_5.png",
+	"frame": {"x":0,"y":1368,"w":387,"h":514},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":387,"h":514},
+	"sourceSize": {"w":387,"h":514},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "state_photoshoot_sophie.png",
+	"format": "RGBA8888",
+	"size": {"w":458,"h":1882},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:773a91fcf78665a6d04944a9f5e83859:52a972a069c1280333e2384e6faacf62:b1cdb66608136ba2094cda5668c4790b$"
+}
+}

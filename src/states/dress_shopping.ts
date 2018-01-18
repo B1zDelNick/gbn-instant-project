@@ -7,6 +7,7 @@ import {GuiButtons} from './gui/enum.gui';
 import {GuiUtils} from '../utils/gui.utils';
 import {Doll} from './template/dress/doll';
 import {Chest} from './template/dress/chest';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class DressShopping extends Phaser.State {
 
@@ -704,6 +705,8 @@ export default class DressShopping extends Phaser.State {
 			this.doll2.on('hair_b', index);
 		}
 		if (this.playBtn.alpha === 0 && this.shoeDressed && this.dressDressed) {
+			if (SoundUtils.isSoundEnabled())
+				SoundUtils.playFX('LevelDone');
 			TweenUtils.fadeAndScaleIn(this.playBtn);
 		}
 	}

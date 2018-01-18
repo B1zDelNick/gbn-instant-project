@@ -13,6 +13,8 @@ export class ShareWindow {
 	private label: Phaser.Sprite = null;
 	private vkBtn: Phaser.Button = null;
 	private fbBtn: Phaser.Button = null;
+	private onShareHandler: Function = null;
+	private parent: any = null;
 
 	constructor() {
 		this.game = GameConfig.GAME;
@@ -38,7 +40,7 @@ export class ShareWindow {
 			ImageUtils.getAtlasClass('AtlasesVirals').getName(),
 			ImageUtils.getAtlasClass('AtlasesVirals').Frames.VkBtn,
 			true, false, true,
-			null,
+			this.onVkShare,
 			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandlerMcg : null,
 			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null
 		);
@@ -46,12 +48,21 @@ export class ShareWindow {
 			ImageUtils.getAtlasClass('AtlasesVirals').getName(),
 			ImageUtils.getAtlasClass('AtlasesVirals').Frames.FbBtn,
 			true, false, true,
-			null,
+			this.onVkShare,
 			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOverHandlerMcg : null,
 			GameConfig.GADGET === GadgetMode.DESKTOP ? GuiUtils.addOutHandlerMcg : null
 		);
 		this.container.x = -540;
 		this.container.y = -40;
+	}
+	
+	private onVkShare() {
+		TweenUtils.delayedCall(500, this.onShareHandler, this.parent);
+	}
+	
+	setListeners(callback: Function, context: any) {
+		this.onShareHandler = callback;
+		this.parent = context;
 	}
 	
 	setScreen(screen: Phaser.Image) {
@@ -62,5 +73,13 @@ export class ShareWindow {
 	
 	show() {
 		TweenUtils.slideIn(this.container, 0, 1000);
+	}
+	
+	hide() {
+		TweenUtils.slideOut(this.container, -540, 1000);
+	}
+	
+	dispose() {
+		// TODO
 	}
 }

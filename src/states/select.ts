@@ -6,10 +6,11 @@ import {InstantGui} from './gui/instant.gui';
 import {GuiButtons} from './gui/enum.gui';
 import {GuiUtils} from '../utils/gui.utils';
 import {Doll} from './template/dress/doll';
+import {SoundUtils} from '../utils/sound/sound.utils';
 
 export default class Select extends Phaser.State {
 
-    private NEXT = 'Select';
+    private NEXT = 'Comix';
     private nextPrepared = false;
 
     private gui: InstantGui = null;
@@ -41,6 +42,7 @@ export default class Select extends Phaser.State {
 
     public init(...args: any[]): void {
 	    this.gui = new InstantGui(this);
+	    SoundUtils.play('MainTheme');
     }
 
     public preload(): void {
@@ -224,8 +226,6 @@ export default class Select extends Phaser.State {
 
         // GUI Buttons
 	    this.gui.addGui();
-	    this.gui.addPhotoBtn(null);
-	    this.gui.addHintBtn(null);
 	    this.leftBtn = this.gui.addExtraBtn(26, 829,
 		    ImageUtils.getAtlasClass('AtlasesGui').getName(),
 		    ImageUtils.getAtlasClass('AtlasesGui').Frames.LeftBtn,
@@ -241,8 +241,8 @@ export default class Select extends Phaser.State {
 	    this.playBtn = this.gui.addPlayBtn(GuiButtons.DONE, this.nextState, 213, 848);
 	    this.playBtn.alpha = 0;
 	    this.playBtn.scale.setTo(0);
-	    this.rightBtn.alpha = 0;
-	    this.rightBtn.scale.setTo(0);
+	    this.leftBtn.alpha = 0;
+	    this.leftBtn.scale.setTo(0);
 
         // Animations goes here
 	    this.game.camera.flash(0x000000, 1000, true);
@@ -258,7 +258,15 @@ export default class Select extends Phaser.State {
     private moveSelection(sprite: Phaser.Button) {
     	if (this.animating) return;
     	this.animating = true;
-    	if (sprite.frameName.toLowerCase().indexOf('left') !== -1) {
+	    this.leftBtn.angle = 0;
+	    this.leftBtn.filters = null;
+	    this.rightBtn.angle = 0;
+	    this.rightBtn.filters = null;
+	    this.leftBtn.inputEnabled = false;
+	    this.rightBtn.inputEnabled = false;
+	    TweenUtils.fadeAndScaleOut(this.leftBtn, 300);
+	    TweenUtils.fadeAndScaleOut(this.rightBtn, 300);
+    	if (sprite.frameName.toLowerCase().indexOf('right') !== -1) {
     	    this.selected++;
     	    if (this.selected === 2) {
     	    	this.monika.fadeLayer('glow', true);
@@ -351,22 +359,22 @@ export default class Select extends Phaser.State {
 			    }
 		    }
 	    }
-	    if (this.selected === 1) {
-		    TweenUtils.fadeAndScaleOut(this.rightBtn);
-	    }
-	    else if (this.selected === 4) {
-		    TweenUtils.fadeAndScaleOut(this.leftBtn);
-	    }
-	    else if (this.selected === 2) {
-		    if (this.rightBtn.alpha === 0) {
+	    TweenUtils.delayedCall(1500, () => {
+		    if (this.selected === 1) {
+			    this.rightBtn.inputEnabled = true;
+			    TweenUtils.fadeAndScaleIn(this.rightBtn);
+		    }
+		    else if (this.selected === 4) {
+			    this.leftBtn.inputEnabled = true;
+			    TweenUtils.fadeAndScaleIn(this.leftBtn);
+		    }
+		    else {
+			    this.leftBtn.inputEnabled = true;
+			    this.rightBtn.inputEnabled = true;
+			    TweenUtils.fadeAndScaleIn(this.leftBtn, 750);
 			    TweenUtils.fadeAndScaleIn(this.rightBtn, 750);
 		    }
-	    }
-	    else if (this.selected === 3) {
-		    if (this.leftBtn.alpha === 0) {
-			    TweenUtils.fadeAndScaleIn(this.leftBtn, 750);
-		    }
-	    }
+	    }, this);
 	    this.nome.loadTexture(
 		    ImageUtils.getAtlasClass('AtlasesStateSelect').getName(),
 		    ImageUtils.getAtlasClass('AtlasesStateSelect').Frames['Name' + this.selected + GameConfig.LOCALE]);

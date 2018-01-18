@@ -1,0 +1,57 @@
+{"frames": [
+
+{
+	"filename": "pose_1.png",
+	"frame": {"x":0,"y":0,"w":211,"h":676},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":211,"h":676},
+	"sourceSize": {"w":211,"h":676},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_2.png",
+	"frame": {"x":211,"y":0,"w":219,"h":670},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":219,"h":670},
+	"sourceSize": {"w":219,"h":670},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_3.png",
+	"frame": {"x":0,"y":676,"w":202,"h":667},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":202,"h":667},
+	"sourceSize": {"w":202,"h":667},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_4.png",
+	"frame": {"x":202,"y":676,"w":238,"h":665},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":238,"h":665},
+	"sourceSize": {"w":238,"h":665},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pose_5.png",
+	"frame": {"x":0,"y":1343,"w":387,"h":505},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":387,"h":505},
+	"sourceSize": {"w":387,"h":505},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "state_photoshoot_chloe.png",
+	"format": "RGBA8888",
+	"size": {"w":440,"h":1848},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:589c570e6e4ea04b80afa376a71e81a3:be9847b946c4783b15289f3aa72c86e4:979a8b48bf68f03ad333c22b01e8545a$"
+}
+}

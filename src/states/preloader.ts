@@ -8,7 +8,7 @@ export default class Preloader extends Phaser.State {
     private preloader: IPreloader = null;
 
     public init(...args: any[]): void {
-        this.preloader = new InstanrPreloader(this, 'SlackRivals');
+        this.preloader = new InstanrPreloader(this, 'DressShopping');
     }
 
     public preload(): void {
